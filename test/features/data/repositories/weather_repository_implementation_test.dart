@@ -1,7 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/data/datasources/weather_remote_data_source.dart';
 import 'package:rock_weather/features/weather/data/repositories/weather_repository_implementation.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
+import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/shared/network_info.dart';
 import 'package:test/test.dart';
 
@@ -41,6 +43,26 @@ void main() {
       await weatherRepository.getCurrentWeatherForCity(city: city);
       //! Assert
       verify(mockWeatherRemoteDataSouce.getCurrentWeatherForCity(city: city));
+    });
+
+    test('Should return the weather when everything is ok', () async {
+      final weather = Weather(
+        dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
+        currentTemperature: 30.1,
+        feelsLike: 35.2,
+        minimumTemperature: 28.6,
+        maximumTemperature: 32.5,
+      );
+      when(mockWeatherRemoteDataSouce.getCurrentWeatherForCity(
+        city: anyNamed('city'),
+      )).thenAnswer((_) async => weather);
+
+      //* Act
+      final result =
+          await weatherRepository.getCurrentWeatherForCity(city: city);
+
+      //! Assert
+      expect(result, Right(weather));
     });
   });
 }
