@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
-import 'package:rock_weather/shared/failures.dart';
+import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:meta/meta.dart';
 
 abstract class WeatherRepository {
