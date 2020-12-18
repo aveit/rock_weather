@@ -17,10 +17,11 @@ class WeatherRepositoryImplementation implements WeatherRepository {
   });
 
   @override
-  Future<Either<Failure, List<Weather>>> getCurrentWeatherForCity({
+  Future<Either<Failure, Weather>> getCurrentWeatherForCity({
     @required City city,
   }) async {
     await networkInfo.isConnected;
-    await remoteDataSource.getCurrentWeatherForCity(city: city);
+    final weather = await remoteDataSource.getCurrentWeatherForCity(city: city);
+    return Right(weather);
   }
 }

@@ -6,13 +6,13 @@ import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:rock_weather/shared/usecase.dart';
 import 'package:meta/meta.dart';
 
-class GetWeather implements UseCase<List<Weather>, GetWeatherParams> {
+class GetWeather implements UseCase<Weather, GetWeatherParams> {
   final WeatherRepository weatherRepository;
 
   const GetWeather({@required this.weatherRepository});
 
   @override
-  Future<Either<Failure, List<Weather>>> call({
+  Future<Either<Failure, Weather>> call({
     @required GetWeatherParams params,
   }) {
     return weatherRepository.getCurrentWeatherForCity(city: params.city);

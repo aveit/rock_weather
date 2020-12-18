@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 abstract class WeatherRepository {
   ///* Calls the datasource to retrieve the current weather for the City passed as a parameter
   ///* If something fails, return Left with a Failure
-  Future<Either<Failure, List<Weather>>> getCurrentWeatherForCity({
+  Future<Either<Failure, Weather>> getCurrentWeatherForCity({
     @required City city,
   });
 }
