@@ -53,50 +53,16 @@ void main() {
       verify(mockDio.get(url));
     });
 
-    test('Should throw a ServerException if Dio returns empty data', () async {
-      //* Act
-      final call = remoteDataSource.getCurrentWeatherForCity;
-
-      //! Assert
-      expect(
-        () async => await call(city: city),
-        throwsA(
-          predicate(
-              (e) => e is ServerException && e.errorMessage == 'Nothing found'),
-        ),
-      );
-    });
-
     test('Should throw a ServerException when there is something wrong in Dio',
         () async {
       //? Arrange
       when(mockDio.get(any)).thenThrow(DioError());
 
       //* Act
-      final call = remoteDataSource.getCurrentWeatherForCity;
+      final call = remoteDataSource.getWeatherForNextFiveDaysForCity;
 
       //! Assert
       expect(() => call(city: city), throwsA(TypeMatcher<ServerException>()));
-    });
-
-    test('Should get the current Weather', () async {
-      //? Arrange
-      final Map<String, dynamic> jsonMap = json.decode(fixture('weather.json'));
-      when(mockDio.get(any)).thenAnswer(
-        (_) async => Response<Map<String, dynamic>>(
-          data: jsonMap,
-        ),
-      );
-
-      //* Act
-      final result =
-          await remoteDataSource.getCurrentWeatherForCity(city: city);
-
-      //! Assert
-      expect(
-        result,
-        WeatherModel.fromJson(jsonMap),
-      );
     });
   });
 

@@ -44,6 +44,11 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
   }) async {
     final url =
         'https://api.openweathermap.org/data/2.5/forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
-    final result = await networkClient.get(url);
+
+    try {
+      final result = await networkClient.get(url);
+    } on DioError {
+      throw ServerException();
+    }
   }
 }
