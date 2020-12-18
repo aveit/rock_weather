@@ -22,7 +22,12 @@ class WeatherRepositoryImplementation implements WeatherRepository {
     @required City city,
   }) async {
     try {
-      await networkInfo.isConnected;
+      if (!await networkInfo.isConnected) {
+        throw ServerException(
+          errorTitle: 'Not connected',
+          errorMessage: 'Please verify your network connection.',
+        );
+      }
       final weather =
           await remoteDataSource.getCurrentWeatherForCity(city: city);
       return Right(weather);

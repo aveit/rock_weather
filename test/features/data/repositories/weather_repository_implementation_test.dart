@@ -31,13 +31,36 @@ void main() {
     );
   });
 
+  tearDown(() {
+    verify(mockNetworkInfo.isConnected);
+  });
+
+  group('[OFFLINE]', () {
+    setUp(() {
+      when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+    });
+
+    test('Should return Left with ServerFailure when there is no connection',
+        () async {
+      //* Act
+      final result =
+          await weatherRepository.getCurrentWeatherForCity(city: city);
+      //! Assert
+      expect(
+        result,
+        Left(
+          ServerFailure(
+            errorTitle: 'Not connected',
+            errorMessage: 'Please verify your network connection.',
+          ),
+        ),
+      );
+    });
+  });
+
   group('[ONLINE]', () {
     setUp(() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-    });
-
-    tearDown(() {
-      verify(mockNetworkInfo.isConnected);
     });
 
     test('Should call remote datasource to get data', () async {
