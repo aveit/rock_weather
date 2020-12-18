@@ -38,4 +38,9 @@ class WeatherRepositoryImplementation implements WeatherRepository {
       ));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Weather>>> getWeatherForNextFiveDaysForCity({
+    @required City city,
+  }) {}
 }

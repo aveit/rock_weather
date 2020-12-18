@@ -10,4 +10,10 @@ abstract class WeatherRepository {
   Future<Either<Failure, Weather>> getCurrentWeatherForCity({
     @required City city,
   });
+
+  ///* Calls the datasource to retrieve the weather for the next five days for the City passed as a parameter
+  ///* If something fails, return Left with a Failure
+  Future<Either<Failure, List<Weather>>> getWeatherForNextFiveDaysForCity({
+    @required City city,
+  });
 }
