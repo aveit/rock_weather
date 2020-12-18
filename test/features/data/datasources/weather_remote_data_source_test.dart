@@ -1,0 +1,52 @@
+import 'package:dio/dio.dart';
+import 'package:mockito/mockito.dart';
+import 'package:rock_weather/features/weather/data/datasources/weather_remote_data_source.dart';
+import 'package:rock_weather/features/weather/domain/entities/city.dart';
+import 'package:rock_weather/shared/errors/exceptions.dart';
+import 'package:test/test.dart';
+
+class MockDio extends Mock implements Dio {}
+
+void main() {
+  WeatherRemoteDataSourceImplementation remoteDataSource;
+  MockDio mockDio;
+
+  final city = City(
+    name: 'Brasilia',
+    stateCode: 'DF',
+    countryCode: 'BR',
+  );
+
+  setUp(() {
+    mockDio = MockDio();
+    remoteDataSource = WeatherRemoteDataSourceImplementation(
+      networkClient: mockDio,
+    );
+  });
+
+  test('Should call Dio with correct values to get data from the API',
+      () async {
+    //? Arrange
+    final apiKey = remoteDataSource.apiKey;
+    final url =
+        'https://api.openweathermap.org/data/2.5/weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+
+    //* Act
+    await remoteDataSource.getCurrentWeatherForCity(city: city);
+
+    //! Assert
+    verify(mockDio.get(url));
+  });
+
+  test('Should throw a ServerException when there is something wrong in Dio',
+      () async {
+    //? Arrange
+    when(mockDio.get(any)).thenThrow(DioError());
+
+    //* Act
+    final call = remoteDataSource.getCurrentWeatherForCity;
+
+    //! Assert
+    expect(() => call(city: city), throwsA(TypeMatcher<ServerException>()));
+  });
+}
