@@ -38,8 +38,8 @@ void main() {
         json.decode(fixture('weather.json'))
       ];
       when(mockDio.get(any)).thenAnswer(
-        (_) async => Response<List<Map<String, dynamic>>>(
-          data: jsonList,
+        (_) async => Response(
+          data: {'list': jsonList},
         ),
       );
       final apiKey = remoteDataSource.apiKey;
@@ -63,6 +63,29 @@ void main() {
 
       //! Assert
       expect(() => call(city: city), throwsA(TypeMatcher<ServerException>()));
+    });
+
+    test('Should get the list of Weather', () async {
+      //? Arrange
+      final List<Map<String, dynamic>> jsonList = [
+        json.decode(fixture('weather.json')),
+        json.decode(fixture('weather.json')),
+      ];
+      when(mockDio.get(any)).thenAnswer(
+        (_) async => Response(
+          data: {'list': jsonList},
+        ),
+      );
+
+      //* Act
+      final result =
+          await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
+
+      //! Assert
+      expect(result, [
+        WeatherModel.fromJson(jsonList[0]),
+        WeatherModel.fromJson(jsonList[1]),
+      ]);
     });
   });
 

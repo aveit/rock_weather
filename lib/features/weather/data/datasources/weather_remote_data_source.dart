@@ -47,6 +47,16 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
 
     try {
       final result = await networkClient.get(url);
+      if (result?.data?.isNotEmpty == true) {
+        final weatherListJson = result.data['list'] as List;
+        if (weatherListJson?.isNotEmpty == true) {
+          var weatherModels = <WeatherModel>[];
+          weatherListJson.forEach((json) {
+            weatherModels.add(WeatherModel.fromJson(json));
+          });
+          return weatherModels;
+        }
+      }
     } on DioError {
       throw ServerException();
     }
