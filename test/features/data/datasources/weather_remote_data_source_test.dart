@@ -32,6 +32,12 @@ void main() {
   test('Should call Dio with correct values to get data from the API',
       () async {
     //? Arrange
+    final Map<String, dynamic> jsonMap = json.decode(fixture('weather.json'));
+    when(mockDio.get(any)).thenAnswer(
+      (_) async => Response<Map<String, dynamic>>(
+        data: jsonMap,
+      ),
+    );
     final apiKey = remoteDataSource.apiKey;
     final url =
         'https://api.openweathermap.org/data/2.5/weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
@@ -41,6 +47,20 @@ void main() {
 
     //! Assert
     verify(mockDio.get(url));
+  });
+
+  test('Should throw a ServerException if Dio returns empty data', () async {
+    //* Act
+    final call = remoteDataSource.getCurrentWeatherForCity;
+
+    //! Assert
+    expect(
+      () async => await call(city: city),
+      throwsA(
+        predicate(
+            (e) => e is ServerException && e.errorMessage == 'Nothing found'),
+      ),
+    );
   });
 
   test('Should throw a ServerException when there is something wrong in Dio',

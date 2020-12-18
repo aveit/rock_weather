@@ -42,5 +42,22 @@ class WeatherRepositoryImplementation implements WeatherRepository {
   @override
   Future<Either<Failure, List<Weather>>> getWeatherForNextFiveDaysForCity({
     @required City city,
-  }) {}
+  }) async {
+    try {
+      if (!await networkInfo.isConnected) {
+        throw ServerException(
+          errorTitle: 'Not connected',
+          errorMessage: 'Please verify your network connection.',
+        );
+      }
+      final weathers =
+          await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
+      return Right(weathers);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(
+        errorMessage: e.errorMessage,
+        errorTitle: e.errorTitle,
+      ));
+    }
+  }
 }

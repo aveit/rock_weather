@@ -6,9 +6,13 @@ import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 
 abstract class WeatherRemoteDataSource {
-  ///* Calls NetworkClient to get the data from the API
+  ///* Calls NetworkClient to get the current weather from the API
   ///* If something goes wrong in NetworkClient, it throws a ServerException
   Future<Weather> getCurrentWeatherForCity({@required City city});
+
+  ///* Calls NetworkClient to get the weather for the next five days from the API
+  ///* If something goes wrong in NetworkClient, it throws a ServerException
+  Future<List<Weather>> getWeatherForNextFiveDaysForCity({@required City city});
 }
 
 class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
@@ -25,11 +29,17 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
 
     try {
       final result = await networkClient.get(url);
-      if (result.data?.isNotEmpty == true) {
+      if (result?.data?.isNotEmpty == true) {
         return WeatherModel.fromJson(result.data);
       }
+      throw ServerException(errorMessage: 'Nothing found');
     } on DioError {
       throw ServerException();
     }
   }
+
+  @override
+  Future<List<Weather>> getWeatherForNextFiveDaysForCity({
+    @required City city,
+  }) {}
 }
