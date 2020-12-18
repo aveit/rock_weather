@@ -6,7 +6,7 @@ import 'package:rock_weather/features/weather/domain/repositories/weather_reposi
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:meta/meta.dart';
-import 'package:rock_weather/shared/network_info.dart';
+import 'package:rock_weather/shared/network/network_info.dart';
 
 class WeatherRepositoryImplementation implements WeatherRepository {
   final WeatherRemoteDataSource remoteDataSource;

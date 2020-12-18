@@ -6,7 +6,7 @@ import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
-import 'package:rock_weather/shared/network_info.dart';
+import 'package:rock_weather/shared/network/network_info.dart';
 import 'package:test/test.dart';
 
 class MockWeatherRemoteDataSouce extends Mock
