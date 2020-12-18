@@ -4,6 +4,8 @@ import 'package:rock_weather/features/weather/data/datasources/weather_remote_da
 import 'package:rock_weather/features/weather/data/repositories/weather_repository_implementation.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
+import 'package:rock_weather/shared/errors/exceptions.dart';
+import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:rock_weather/shared/network_info.dart';
 import 'package:test/test.dart';
 
@@ -63,6 +65,21 @@ void main() {
 
       //! Assert
       expect(result, Right(weather));
+    });
+
+    test(
+        'Should return Left with ServerFailure when something goes wrong on the datasource',
+        () async {
+      when(mockWeatherRemoteDataSouce.getCurrentWeatherForCity(
+        city: anyNamed('city'),
+      )).thenThrow(ServerException());
+
+      //* Act
+      final result =
+          await weatherRepository.getCurrentWeatherForCity(city: city);
+
+      //! Assert
+      expect(result, Left(ServerFailure()));
     });
   });
 }

@@ -3,6 +3,7 @@ import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:dartz/dartz.dart';
 import 'package:rock_weather/features/weather/domain/repositories/weather_repository.dart';
+import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:meta/meta.dart';
 import 'package:rock_weather/shared/network_info.dart';
@@ -20,8 +21,16 @@ class WeatherRepositoryImplementation implements WeatherRepository {
   Future<Either<Failure, Weather>> getCurrentWeatherForCity({
     @required City city,
   }) async {
-    await networkInfo.isConnected;
-    final weather = await remoteDataSource.getCurrentWeatherForCity(city: city);
-    return Right(weather);
+    try {
+      await networkInfo.isConnected;
+      final weather =
+          await remoteDataSource.getCurrentWeatherForCity(city: city);
+      return Right(weather);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(
+        errorMessage: e.errorMessage,
+        errorTitle: e.errorTitle,
+      ));
+    }
   }
 }
