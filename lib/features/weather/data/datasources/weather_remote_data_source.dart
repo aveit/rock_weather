@@ -57,6 +57,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
           return weatherModels;
         }
       }
+      throw ServerException(errorMessage: 'Nothing found');
     } on DioError {
       throw ServerException();
     }

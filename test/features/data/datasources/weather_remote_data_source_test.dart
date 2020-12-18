@@ -87,6 +87,20 @@ void main() {
         WeatherModel.fromJson(jsonList[1]),
       ]);
     });
+
+    test('Should throw a ServerException if Dio returns empty data', () async {
+      //* Act
+      final call = remoteDataSource.getWeatherForNextFiveDaysForCity;
+
+      //! Assert
+      expect(
+        () async => await call(city: city),
+        throwsA(
+          predicate(
+              (e) => e is ServerException && e.errorMessage == 'Nothing found'),
+        ),
+      );
+    });
   });
 
   group('[CURRENT WEATHER]', () {
