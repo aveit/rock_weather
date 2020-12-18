@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/data/datasources/weather_remote_data_source.dart';
+import 'package:rock_weather/features/weather/data/models/weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:test/test.dart';
+
+import '../../../fixtures/fixture_reader.dart';
 
 class MockDio extends Mock implements Dio {}
 
@@ -48,5 +53,24 @@ void main() {
 
     //! Assert
     expect(() => call(city: city), throwsA(TypeMatcher<ServerException>()));
+  });
+
+  test('Should get the current Weather', () async {
+    //? Arrange
+    final Map<String, dynamic> jsonMap = json.decode(fixture('weather.json'));
+    when(mockDio.get(any)).thenAnswer(
+      (_) async => Response<Map<String, dynamic>>(
+        data: jsonMap,
+      ),
+    );
+
+    //* Act
+    final result = await remoteDataSource.getCurrentWeatherForCity(city: city);
+
+    //! Assert
+    expect(
+      result,
+      WeatherModel.fromJson(jsonMap),
+    );
   });
 }

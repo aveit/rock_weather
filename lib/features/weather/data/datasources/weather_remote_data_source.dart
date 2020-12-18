@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:rock_weather/features/weather/data/models/weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
@@ -23,7 +24,10 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
         'https://api.openweathermap.org/data/2.5/weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
 
     try {
-      await networkClient.get(url);
+      final result = await networkClient.get(url);
+      if (result.data?.isNotEmpty == true) {
+        return WeatherModel.fromJson(result.data);
+      }
     } on DioError {
       throw ServerException();
     }
