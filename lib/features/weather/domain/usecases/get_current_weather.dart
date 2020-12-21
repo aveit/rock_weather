@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/repositories/weather_repository.dart';
@@ -19,8 +20,11 @@ class GetWeather implements UseCase<Weather, GetWeatherParams> {
   }
 }
 
-class GetWeatherParams {
+class GetWeatherParams extends Equatable {
   final City city;
 
   const GetWeatherParams({@required this.city});
+
+  @override
+  List<Object> get props => [city];
 }
