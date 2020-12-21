@@ -28,7 +28,15 @@ class NextFiveDaysWeatherBloc
         final eitherListOfWeatherOrFail = await getWeatherForNextFiveDays(
           params: GetWeatherForNextFiveDaysParams(city: e.city),
         );
-        yield NextFiveDaysWeatherState.loaded(eitherListOfWeatherOrFail | null);
+
+        yield* eitherListOfWeatherOrFail.fold(
+          (_) async* {
+            yield NextFiveDaysWeatherState.error();
+          },
+          (result) async* {
+            yield NextFiveDaysWeatherState.loaded(result);
+          },
+        );
       },
     );
   }

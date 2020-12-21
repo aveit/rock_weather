@@ -5,6 +5,7 @@ import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_next_five_days_weather.dart';
 import 'package:rock_weather/features/weather/presentation/blocs/next_five_days/next_five_days_weather_bloc.dart';
+import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:test/test.dart';
 
 class MockGetWeatherForNextFiveDays extends Mock
@@ -71,6 +72,24 @@ void main() {
       expect: [
         NextFiveDaysWeatherState.loading(),
         NextFiveDaysWeatherState.loaded(weatherResult),
+      ],
+    );
+
+    blocTest(
+      'Should emit [loading, error] when unsuccessfull',
+      build: () {
+        when(mockGetWeatherForNextFiveDays(params: anyNamed('params')))
+            .thenAnswer(
+          (_) async => Left(ServerFailure()),
+        );
+        return nextFiveDaysWeatherBloc;
+      },
+      act: (bloc) => bloc.add(
+        NextFiveDaysWeatherEvent.getWeatherForNextFiveDaysForCity(city: city),
+      ),
+      expect: [
+        NextFiveDaysWeatherState.loading(),
+        NextFiveDaysWeatherState.error(),
       ],
     );
   });

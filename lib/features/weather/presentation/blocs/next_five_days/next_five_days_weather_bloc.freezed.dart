@@ -222,6 +222,11 @@ class _$NextFiveDaysWeatherStateTearOff {
   }
 
 // ignore: unused_element
+  _Error error() {
+    return const _Error();
+  }
+
+// ignore: unused_element
   _Loaded loaded(List<Weather> result) {
     return _Loaded(
       result,
@@ -239,12 +244,14 @@ mixin _$NextFiveDaysWeatherState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult error(),
     @required TResult loaded(List<Weather> result),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult error(),
     TResult loaded(List<Weather> result),
     @required TResult orElse(),
   });
@@ -252,12 +259,14 @@ mixin _$NextFiveDaysWeatherState {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
     @required TResult loaded(_Loaded value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult error(_Error value),
     TResult loaded(_Loaded value),
     @required TResult orElse(),
   });
@@ -319,10 +328,12 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult error(),
     @required TResult loaded(List<Weather> result),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(error != null);
     assert(loaded != null);
     return initial();
   }
@@ -332,6 +343,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult error(),
     TResult loaded(List<Weather> result),
     @required TResult orElse(),
   }) {
@@ -347,10 +359,12 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
     @required TResult loaded(_Loaded value),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(error != null);
     assert(loaded != null);
     return initial(this);
   }
@@ -360,6 +374,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult error(_Error value),
     TResult loaded(_Loaded value),
     @required TResult orElse(),
   }) {
@@ -414,10 +429,12 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult error(),
     @required TResult loaded(List<Weather> result),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(error != null);
     assert(loaded != null);
     return loading();
   }
@@ -427,6 +444,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult error(),
     TResult loaded(List<Weather> result),
     @required TResult orElse(),
   }) {
@@ -442,10 +460,12 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
     @required TResult loaded(_Loaded value),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(error != null);
     assert(loaded != null);
     return loading(this);
   }
@@ -455,6 +475,7 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult error(_Error value),
     TResult loaded(_Loaded value),
     @required TResult orElse(),
   }) {
@@ -468,6 +489,107 @@ class _$_Loading implements _Loading {
 
 abstract class _Loading implements NextFiveDaysWeatherState {
   const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$ErrorCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
+      __$ErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ErrorCopyWithImpl<$Res>
+    extends _$NextFiveDaysWeatherStateCopyWithImpl<$Res>
+    implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
+      : super(_value, (v) => _then(v as _Error));
+
+  @override
+  _Error get _value => super._value as _Error;
+}
+
+/// @nodoc
+class _$_Error implements _Error {
+  const _$_Error();
+
+  @override
+  String toString() {
+    return 'NextFiveDaysWeatherState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Error);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(),
+    @required TResult loaded(List<Weather> result),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(loaded != null);
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(),
+    TResult loaded(List<Weather> result),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult loaded(_Loaded value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(loaded != null);
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult loaded(_Loaded value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Error implements NextFiveDaysWeatherState {
+  const factory _Error() = _$_Error;
 }
 
 /// @nodoc
@@ -530,10 +652,12 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult error(),
     @required TResult loaded(List<Weather> result),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(error != null);
     assert(loaded != null);
     return loaded(result);
   }
@@ -543,6 +667,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult error(),
     TResult loaded(List<Weather> result),
     @required TResult orElse(),
   }) {
@@ -558,10 +683,12 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
     @required TResult loaded(_Loaded value),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(error != null);
     assert(loaded != null);
     return loaded(this);
   }
@@ -571,6 +698,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult error(_Error value),
     TResult loaded(_Loaded value),
     @required TResult orElse(),
   }) {
