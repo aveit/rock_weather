@@ -46,7 +46,7 @@ void main() {
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'https://api.openweathermap.org/data/2.5/forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+          'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
 
       //* Act
       await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
@@ -117,7 +117,7 @@ void main() {
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'https://api.openweathermap.org/data/2.5/weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+          'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
 
       //* Act
       await remoteDataSource.getCurrentWeatherForCity(city: city);

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_current_weather.dart';
 
 part 'current_weather_event.dart';

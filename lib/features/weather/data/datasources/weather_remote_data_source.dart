@@ -25,7 +25,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
   @override
   Future<Weather> getCurrentWeatherForCity({@required City city}) async {
     final url =
-        'https://api.openweathermap.org/data/2.5/weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+        'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
 
     try {
       final result = await networkClient.get(url);
@@ -43,7 +43,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
     @required City city,
   }) async {
     final url =
-        'https://api.openweathermap.org/data/2.5/forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+        'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
 
     try {
       final result = await networkClient.get(url);
