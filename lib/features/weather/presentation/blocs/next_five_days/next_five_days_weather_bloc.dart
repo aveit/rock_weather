@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_next_five_days_weather.dart';
 
 part 'next_five_days_weather_event.dart';
@@ -34,7 +33,9 @@ class NextFiveDaysWeatherBloc
             yield NextFiveDaysWeatherState.error();
           },
           (result) async* {
-            yield NextFiveDaysWeatherState.loaded(result);
+            final cityWithLoadedWeather =
+                e.city.copyWith(nextFiveDaysWeather: result);
+            yield NextFiveDaysWeatherState.loaded(cityWithLoadedWeather);
           },
         );
       },

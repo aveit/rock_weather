@@ -5,5 +5,6 @@ abstract class NextFiveDaysWeatherState with _$NextFiveDaysWeatherState {
   const factory NextFiveDaysWeatherState.initial() = _Initial;
   const factory NextFiveDaysWeatherState.loading() = _Loading;
   const factory NextFiveDaysWeatherState.error() = _Error;
-  const factory NextFiveDaysWeatherState.loaded(List<Weather> result) = _Loaded;
+  const factory NextFiveDaysWeatherState.loaded(City cityWithLoadedWeather) =
+      _Loaded;
 }

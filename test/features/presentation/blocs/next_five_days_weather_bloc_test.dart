@@ -26,6 +26,8 @@ void main() {
       countryCode: 'ANY',
       name: 'ANY',
       stateCode: 'ANY',
+      currentWeather: null,
+      nextFiveDaysWeather: null,
     );
 
     final weatherResult = [
@@ -51,6 +53,10 @@ void main() {
       ),
     ];
 
+    final cityWithWeatherLoaded = city.copyWith(
+      nextFiveDaysWeather: weatherResult,
+    );
+
     tearDown(() {
       verify(mockGetWeatherForNextFiveDays(
         params: GetWeatherForNextFiveDaysParams(city: city),
@@ -71,7 +77,7 @@ void main() {
       ),
       expect: [
         NextFiveDaysWeatherState.loading(),
-        NextFiveDaysWeatherState.loaded(weatherResult),
+        NextFiveDaysWeatherState.loaded(cityWithWeatherLoaded),
       ],
     );
 

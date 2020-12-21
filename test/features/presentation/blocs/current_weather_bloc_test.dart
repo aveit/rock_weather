@@ -23,6 +23,8 @@ void main() {
       countryCode: 'ANY',
       name: 'ANY',
       stateCode: 'ANY',
+      currentWeather: null,
+      nextFiveDaysWeather: null,
     );
 
     final weatherResult = Weather(
@@ -69,5 +71,21 @@ void main() {
         CurrentWeatherState.loaded(weatherResult),
       ],
     );
+
+    // blocTest(
+    //   'Should emit [loading, loaded] and call getCurrentWeather for all cities when success',
+    //   build: () {
+    //     when(mockGetCurrentWeather(params: anyNamed('params'))).thenAnswer(
+    //       (_) async => Right(weatherResult),
+    //     );
+    //     return weatherBloc;
+    //   },
+    //   act: (bloc) => bloc
+    //       .add(CurrentWeatherEvent.getCurrentWeatherForCities(cities: cities)),
+    //   expect: [
+    //     CurrentWeatherState.loading(),
+    //     CurrentWeatherState.loaded(weatherResult),
+    //   ],
+    // );
   });
 }

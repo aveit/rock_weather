@@ -19,7 +19,13 @@ void main() {
   MockWeatherRemoteDataSouce mockWeatherRemoteDataSouce;
   MockNetworkInfo mockNetworkInfo;
 
-  final city = City(name: 'Brasilia', stateCode: 'DF', countryCode: 'BR');
+  final city = City(
+    name: 'Brasilia',
+    stateCode: 'DF',
+    countryCode: 'BR',
+    currentWeather: null,
+    nextFiveDaysWeather: null,
+  );
 
   setUp(() {
     mockWeatherRemoteDataSouce = MockWeatherRemoteDataSouce();

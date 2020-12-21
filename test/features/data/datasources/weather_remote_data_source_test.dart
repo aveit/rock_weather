@@ -20,6 +20,8 @@ void main() {
     name: 'Brasilia',
     stateCode: 'DF',
     countryCode: 'BR',
+    currentWeather: null,
+    nextFiveDaysWeather: null,
   );
 
   setUp(() {

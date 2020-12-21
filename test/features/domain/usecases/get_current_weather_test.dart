@@ -17,7 +17,13 @@ void main() {
 
   test('Should call the repository to get data', () async {
     //? Arrange
-    final city = City(name: 'Brasilia', stateCode: 'DF', countryCode: 'BR');
+    final city = City(
+      name: 'Brasilia',
+      stateCode: 'DF',
+      countryCode: 'BR',
+      currentWeather: null,
+      nextFiveDaysWeather: null,
+    );
 
     //* Act
     await getWeather(params: GetWeatherParams(city: city));
