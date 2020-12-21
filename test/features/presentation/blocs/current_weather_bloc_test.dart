@@ -38,6 +38,10 @@ void main() {
       ),
     );
 
+    final cityWithCurrentWeatherLoaded = city.copyWith(
+      currentWeather: weatherResult,
+    );
+
     tearDown(() {
       verify(mockGetCurrentWeather(params: GetWeatherParams(city: city)));
     });
@@ -68,24 +72,8 @@ void main() {
           bloc.add(CurrentWeatherEvent.getCurrentWeatherForCity(city: city)),
       expect: [
         CurrentWeatherState.loading(),
-        CurrentWeatherState.loaded(weatherResult),
+        CurrentWeatherState.loaded(cityWithCurrentWeatherLoaded),
       ],
     );
-
-    // blocTest(
-    //   'Should emit [loading, loaded] and call getCurrentWeather for all cities when success',
-    //   build: () {
-    //     when(mockGetCurrentWeather(params: anyNamed('params'))).thenAnswer(
-    //       (_) async => Right(weatherResult),
-    //     );
-    //     return weatherBloc;
-    //   },
-    //   act: (bloc) => bloc
-    //       .add(CurrentWeatherEvent.getCurrentWeatherForCities(cities: cities)),
-    //   expect: [
-    //     CurrentWeatherState.loading(),
-    //     CurrentWeatherState.loaded(weatherResult),
-    //   ],
-    // );
   });
 }

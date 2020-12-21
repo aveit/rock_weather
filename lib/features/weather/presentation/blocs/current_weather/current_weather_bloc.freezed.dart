@@ -215,9 +215,9 @@ class _$CurrentWeatherStateTearOff {
   }
 
 // ignore: unused_element
-  _Loaded loaded(Weather weatherResult) {
+  _Loaded loaded(City cityWithCurrentWeatherLoaded) {
     return _Loaded(
-      weatherResult,
+      cityWithCurrentWeatherLoaded,
     );
   }
 }
@@ -233,14 +233,14 @@ mixin _$CurrentWeatherState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult loaded(Weather weatherResult),
+    @required TResult loaded(City cityWithCurrentWeatherLoaded),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult loaded(Weather weatherResult),
+    TResult loaded(City cityWithCurrentWeatherLoaded),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -317,7 +317,7 @@ class _$_Initial implements _Initial {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult loaded(Weather weatherResult),
+    @required TResult loaded(City cityWithCurrentWeatherLoaded),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -332,7 +332,7 @@ class _$_Initial implements _Initial {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult loaded(Weather weatherResult),
+    TResult loaded(City cityWithCurrentWeatherLoaded),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -418,7 +418,7 @@ class _$_Loading implements _Loading {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult loaded(Weather weatherResult),
+    @required TResult loaded(City cityWithCurrentWeatherLoaded),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -433,7 +433,7 @@ class _$_Loading implements _Loading {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult loaded(Weather weatherResult),
+    TResult loaded(City cityWithCurrentWeatherLoaded),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -518,7 +518,7 @@ class _$_Error implements _Error {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult loaded(Weather weatherResult),
+    @required TResult loaded(City cityWithCurrentWeatherLoaded),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -533,7 +533,7 @@ class _$_Error implements _Error {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult loaded(Weather weatherResult),
+    TResult loaded(City cityWithCurrentWeatherLoaded),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -583,7 +583,7 @@ abstract class _Error implements CurrentWeatherState {
 abstract class _$LoadedCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
       __$LoadedCopyWithImpl<$Res>;
-  $Res call({Weather weatherResult});
+  $Res call({City cityWithCurrentWeatherLoaded});
 }
 
 /// @nodoc
@@ -598,40 +598,44 @@ class __$LoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object weatherResult = freezed,
+    Object cityWithCurrentWeatherLoaded = freezed,
   }) {
     return _then(_Loaded(
-      weatherResult == freezed
-          ? _value.weatherResult
-          : weatherResult as Weather,
+      cityWithCurrentWeatherLoaded == freezed
+          ? _value.cityWithCurrentWeatherLoaded
+          : cityWithCurrentWeatherLoaded as City,
     ));
   }
 }
 
 /// @nodoc
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.weatherResult) : assert(weatherResult != null);
+  const _$_Loaded(this.cityWithCurrentWeatherLoaded)
+      : assert(cityWithCurrentWeatherLoaded != null);
 
   @override
-  final Weather weatherResult;
+  final City cityWithCurrentWeatherLoaded;
 
   @override
   String toString() {
-    return 'CurrentWeatherState.loaded(weatherResult: $weatherResult)';
+    return 'CurrentWeatherState.loaded(cityWithCurrentWeatherLoaded: $cityWithCurrentWeatherLoaded)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Loaded &&
-            (identical(other.weatherResult, weatherResult) ||
-                const DeepCollectionEquality()
-                    .equals(other.weatherResult, weatherResult)));
+            (identical(other.cityWithCurrentWeatherLoaded,
+                    cityWithCurrentWeatherLoaded) ||
+                const DeepCollectionEquality().equals(
+                    other.cityWithCurrentWeatherLoaded,
+                    cityWithCurrentWeatherLoaded)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(weatherResult);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(cityWithCurrentWeatherLoaded);
 
   @override
   _$LoadedCopyWith<_Loaded> get copyWith =>
@@ -643,13 +647,13 @@ class _$_Loaded implements _Loaded {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult loaded(Weather weatherResult),
+    @required TResult loaded(City cityWithCurrentWeatherLoaded),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(loaded != null);
-    return loaded(weatherResult);
+    return loaded(cityWithCurrentWeatherLoaded);
   }
 
   @override
@@ -658,12 +662,12 @@ class _$_Loaded implements _Loaded {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult loaded(Weather weatherResult),
+    TResult loaded(City cityWithCurrentWeatherLoaded),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loaded != null) {
-      return loaded(weatherResult);
+      return loaded(cityWithCurrentWeatherLoaded);
     }
     return orElse();
   }
@@ -701,8 +705,8 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements CurrentWeatherState {
-  const factory _Loaded(Weather weatherResult) = _$_Loaded;
+  const factory _Loaded(City cityWithCurrentWeatherLoaded) = _$_Loaded;
 
-  Weather get weatherResult;
+  City get cityWithCurrentWeatherLoaded;
   _$LoadedCopyWith<_Loaded> get copyWith;
 }

@@ -35,7 +35,8 @@ class CurrentWeatherBloc
             yield CurrentWeatherState.error();
           },
           (weather) async* {
-            yield CurrentWeatherState.loaded(weather);
+            yield CurrentWeatherState.loaded(
+                e.city.copyWith(currentWeather: weather));
           },
         );
       },
