@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_current_weather.dart';
-import 'package:rock_weather/features/weather/presentation/blocs/bloc/weather_bloc.dart';
+import 'package:rock_weather/features/weather/presentation/blocs/current_weather/current_weather_bloc.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:test/test.dart';
 
@@ -12,10 +12,10 @@ class MockGetCurrentWeather extends Mock implements GetWeather {}
 
 void main() {
   MockGetCurrentWeather mockGetCurrentWeather;
-  WeatherBloc weatherBloc;
+  CurrentWeatherBloc weatherBloc;
   setUp(() {
     mockGetCurrentWeather = MockGetCurrentWeather();
-    weatherBloc = WeatherBloc(getCurrentWeather: mockGetCurrentWeather);
+    weatherBloc = CurrentWeatherBloc(getCurrentWeather: mockGetCurrentWeather);
   });
 
   group('[CURRENT WEATHER]', () {
@@ -47,10 +47,10 @@ void main() {
         return weatherBloc;
       },
       act: (bloc) =>
-          bloc.add(WeatherEvent.getCurrentWeatherForCity(city: city)),
+          bloc.add(CurrentWeatherEvent.getCurrentWeatherForCity(city: city)),
       expect: [
-        WeatherState.loading(),
-        WeatherState.error(),
+        CurrentWeatherState.loading(),
+        CurrentWeatherState.error(),
       ],
     );
 
@@ -63,10 +63,10 @@ void main() {
         return weatherBloc;
       },
       act: (bloc) =>
-          bloc.add(WeatherEvent.getCurrentWeatherForCity(city: city)),
+          bloc.add(CurrentWeatherEvent.getCurrentWeatherForCity(city: city)),
       expect: [
-        WeatherState.loading(),
-        WeatherState.loaded(weatherResult),
+        CurrentWeatherState.loading(),
+        CurrentWeatherState.loaded(weatherResult),
       ],
     );
   });

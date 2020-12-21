@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'weather_bloc.dart';
+part of 'current_weather_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -10,8 +10,8 @@ part of 'weather_bloc.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$WeatherEventTearOff {
-  const _$WeatherEventTearOff();
+class _$CurrentWeatherEventTearOff {
+  const _$CurrentWeatherEventTearOff();
 
 // ignore: unused_element
   _GetCurrentWeatherForCity getCurrentWeatherForCity({@required City city}) {
@@ -23,10 +23,10 @@ class _$WeatherEventTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $WeatherEvent = _$WeatherEventTearOff();
+const $CurrentWeatherEvent = _$CurrentWeatherEventTearOff();
 
 /// @nodoc
-mixin _$WeatherEvent {
+mixin _$CurrentWeatherEvent {
   City get city;
 
   @optionalTypeArgs
@@ -48,24 +48,25 @@ mixin _$WeatherEvent {
     @required TResult orElse(),
   });
 
-  $WeatherEventCopyWith<WeatherEvent> get copyWith;
+  $CurrentWeatherEventCopyWith<CurrentWeatherEvent> get copyWith;
 }
 
 /// @nodoc
-abstract class $WeatherEventCopyWith<$Res> {
-  factory $WeatherEventCopyWith(
-          WeatherEvent value, $Res Function(WeatherEvent) then) =
-      _$WeatherEventCopyWithImpl<$Res>;
+abstract class $CurrentWeatherEventCopyWith<$Res> {
+  factory $CurrentWeatherEventCopyWith(
+          CurrentWeatherEvent value, $Res Function(CurrentWeatherEvent) then) =
+      _$CurrentWeatherEventCopyWithImpl<$Res>;
   $Res call({City city});
 }
 
 /// @nodoc
-class _$WeatherEventCopyWithImpl<$Res> implements $WeatherEventCopyWith<$Res> {
-  _$WeatherEventCopyWithImpl(this._value, this._then);
+class _$CurrentWeatherEventCopyWithImpl<$Res>
+    implements $CurrentWeatherEventCopyWith<$Res> {
+  _$CurrentWeatherEventCopyWithImpl(this._value, this._then);
 
-  final WeatherEvent _value;
+  final CurrentWeatherEvent _value;
   // ignore: unused_field
-  final $Res Function(WeatherEvent) _then;
+  final $Res Function(CurrentWeatherEvent) _then;
 
   @override
   $Res call({
@@ -79,7 +80,7 @@ class _$WeatherEventCopyWithImpl<$Res> implements $WeatherEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$GetCurrentWeatherForCityCopyWith<$Res>
-    implements $WeatherEventCopyWith<$Res> {
+    implements $CurrentWeatherEventCopyWith<$Res> {
   factory _$GetCurrentWeatherForCityCopyWith(_GetCurrentWeatherForCity value,
           $Res Function(_GetCurrentWeatherForCity) then) =
       __$GetCurrentWeatherForCityCopyWithImpl<$Res>;
@@ -89,7 +90,7 @@ abstract class _$GetCurrentWeatherForCityCopyWith<$Res>
 
 /// @nodoc
 class __$GetCurrentWeatherForCityCopyWithImpl<$Res>
-    extends _$WeatherEventCopyWithImpl<$Res>
+    extends _$CurrentWeatherEventCopyWithImpl<$Res>
     implements _$GetCurrentWeatherForCityCopyWith<$Res> {
   __$GetCurrentWeatherForCityCopyWithImpl(_GetCurrentWeatherForCity _value,
       $Res Function(_GetCurrentWeatherForCity) _then)
@@ -119,7 +120,7 @@ class _$_GetCurrentWeatherForCity implements _GetCurrentWeatherForCity {
 
   @override
   String toString() {
-    return 'WeatherEvent.getCurrentWeatherForCity(city: $city)';
+    return 'CurrentWeatherEvent.getCurrentWeatherForCity(city: $city)';
   }
 
   @override
@@ -184,7 +185,7 @@ class _$_GetCurrentWeatherForCity implements _GetCurrentWeatherForCity {
   }
 }
 
-abstract class _GetCurrentWeatherForCity implements WeatherEvent {
+abstract class _GetCurrentWeatherForCity implements CurrentWeatherEvent {
   const factory _GetCurrentWeatherForCity({@required City city}) =
       _$_GetCurrentWeatherForCity;
 
@@ -195,8 +196,8 @@ abstract class _GetCurrentWeatherForCity implements WeatherEvent {
 }
 
 /// @nodoc
-class _$WeatherStateTearOff {
-  const _$WeatherStateTearOff();
+class _$CurrentWeatherStateTearOff {
+  const _$CurrentWeatherStateTearOff();
 
 // ignore: unused_element
   _Initial initial() {
@@ -223,10 +224,10 @@ class _$WeatherStateTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $WeatherState = _$WeatherStateTearOff();
+const $CurrentWeatherState = _$CurrentWeatherStateTearOff();
 
 /// @nodoc
-mixin _$WeatherState {
+mixin _$CurrentWeatherState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
@@ -260,19 +261,20 @@ mixin _$WeatherState {
 }
 
 /// @nodoc
-abstract class $WeatherStateCopyWith<$Res> {
-  factory $WeatherStateCopyWith(
-          WeatherState value, $Res Function(WeatherState) then) =
-      _$WeatherStateCopyWithImpl<$Res>;
+abstract class $CurrentWeatherStateCopyWith<$Res> {
+  factory $CurrentWeatherStateCopyWith(
+          CurrentWeatherState value, $Res Function(CurrentWeatherState) then) =
+      _$CurrentWeatherStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WeatherStateCopyWithImpl<$Res> implements $WeatherStateCopyWith<$Res> {
-  _$WeatherStateCopyWithImpl(this._value, this._then);
+class _$CurrentWeatherStateCopyWithImpl<$Res>
+    implements $CurrentWeatherStateCopyWith<$Res> {
+  _$CurrentWeatherStateCopyWithImpl(this._value, this._then);
 
-  final WeatherState _value;
+  final CurrentWeatherState _value;
   // ignore: unused_field
-  final $Res Function(WeatherState) _then;
+  final $Res Function(CurrentWeatherState) _then;
 }
 
 /// @nodoc
@@ -282,7 +284,8 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$WeatherStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res>
+    extends _$CurrentWeatherStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -297,7 +300,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'WeatherState.initial()';
+    return 'CurrentWeatherState.initial()';
   }
 
   @override
@@ -371,7 +374,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements WeatherState {
+abstract class _Initial implements CurrentWeatherState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -382,7 +385,8 @@ abstract class _$LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$WeatherStateCopyWithImpl<$Res>
+class __$LoadingCopyWithImpl<$Res>
+    extends _$CurrentWeatherStateCopyWithImpl<$Res>
     implements _$LoadingCopyWith<$Res> {
   __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
       : super(_value, (v) => _then(v as _Loading));
@@ -397,7 +401,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'WeatherState.loading()';
+    return 'CurrentWeatherState.loading()';
   }
 
   @override
@@ -471,7 +475,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements WeatherState {
+abstract class _Loading implements CurrentWeatherState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -482,7 +486,7 @@ abstract class _$ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$WeatherStateCopyWithImpl<$Res>
+class __$ErrorCopyWithImpl<$Res> extends _$CurrentWeatherStateCopyWithImpl<$Res>
     implements _$ErrorCopyWith<$Res> {
   __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
       : super(_value, (v) => _then(v as _Error));
@@ -497,7 +501,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'WeatherState.error()';
+    return 'CurrentWeatherState.error()';
   }
 
   @override
@@ -571,7 +575,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements WeatherState {
+abstract class _Error implements CurrentWeatherState {
   const factory _Error() = _$_Error;
 }
 
@@ -583,7 +587,8 @@ abstract class _$LoadedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res> extends _$WeatherStateCopyWithImpl<$Res>
+class __$LoadedCopyWithImpl<$Res>
+    extends _$CurrentWeatherStateCopyWithImpl<$Res>
     implements _$LoadedCopyWith<$Res> {
   __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
       : super(_value, (v) => _then(v as _Loaded));
@@ -612,7 +617,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'WeatherState.loaded(weatherResult: $weatherResult)';
+    return 'CurrentWeatherState.loaded(weatherResult: $weatherResult)';
   }
 
   @override
@@ -695,7 +700,7 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements WeatherState {
+abstract class _Loaded implements CurrentWeatherState {
   const factory _Loaded(Weather weatherResult) = _$_Loaded;
 
   Weather get weatherResult;

@@ -6,24 +6,25 @@ import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/weather.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_current_weather.dart';
 
-part 'weather_event.dart';
-part 'weather_state.dart';
-part 'weather_bloc.freezed.dart';
+part 'current_weather_event.dart';
+part 'current_weather_state.dart';
+part 'current_weather_bloc.freezed.dart';
 
-class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
+class CurrentWeatherBloc
+    extends Bloc<CurrentWeatherEvent, CurrentWeatherState> {
   final GetWeather getCurrentWeather;
 
-  WeatherBloc({
+  CurrentWeatherBloc({
     @required this.getCurrentWeather,
   }) : super(_Initial());
 
   @override
-  Stream<WeatherState> mapEventToState(
-    WeatherEvent event,
+  Stream<CurrentWeatherState> mapEventToState(
+    CurrentWeatherEvent event,
   ) async* {
     yield* event.map(
       getCurrentWeatherForCity: (e) async* {
-        yield WeatherState.loading();
+        yield CurrentWeatherState.loading();
 
         final eitherErrorOrSucces = await getCurrentWeather(
           params: GetWeatherParams(city: e.city),
@@ -31,10 +32,10 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
         yield* eitherErrorOrSucces.fold(
           (_) async* {
-            yield WeatherState.error();
+            yield CurrentWeatherState.error();
           },
           (weather) async* {
-            yield WeatherState.loaded(weather);
+            yield CurrentWeatherState.loaded(weather);
           },
         );
       },
