@@ -16,7 +16,7 @@ abstract class WeatherRemoteDataSource {
 }
 
 class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
-  final apiKey = '';
+  final apiKey = '9a93bbae393141542d757e668996f369';
 
   final Dio networkClient;
 
@@ -25,7 +25,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
   @override
   Future<Weather> getCurrentWeatherForCity({@required City city}) async {
     final url =
-        'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+        'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
 
     try {
       final result = await networkClient.get(url);
@@ -43,7 +43,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
     @required City city,
   }) async {
     final url =
-        'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+        'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
 
     try {
       final result = await networkClient.get(url);

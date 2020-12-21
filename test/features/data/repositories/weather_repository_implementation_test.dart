@@ -91,6 +91,7 @@ void main() {
             feelsLike: 25.2,
             minimumTemperature: 18.6,
             maximumTemperature: 22.5,
+            iconId: 'ANY',
           ),
           Weather(
             dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
@@ -98,6 +99,7 @@ void main() {
             feelsLike: 35.2,
             minimumTemperature: 28.6,
             maximumTemperature: 32.5,
+            iconId: 'ANY',
           ),
         ];
         when(mockWeatherRemoteDataSouce.getWeatherForNextFiveDaysForCity(
@@ -172,6 +174,7 @@ void main() {
           feelsLike: 35.2,
           minimumTemperature: 28.6,
           maximumTemperature: 32.5,
+          iconId: 'ANY',
         );
         when(mockWeatherRemoteDataSouce.getCurrentWeatherForCity(
           city: anyNamed('city'),

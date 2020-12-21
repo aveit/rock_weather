@@ -1,7 +1,7 @@
 {
   "coord": { "lon": -54.31, "lat": -27.63 },
   "weather": [
-    { "id": 800, "main": "Clear", "description": "clear sky", "icon": "01d" }
+    { "id": 800, "main": "Clear", "description": "clear sky", "icon": "ANY" }
   ],
   "base": "stations",
   "main": {

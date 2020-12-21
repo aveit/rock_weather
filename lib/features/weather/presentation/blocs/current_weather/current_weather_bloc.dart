@@ -15,7 +15,7 @@ class CurrentWeatherBloc
 
   CurrentWeatherBloc({
     @required this.getCurrentWeather,
-  }) : super(_Initial());
+  }) : super(CurrentWeatherState.initial());
 
   @override
   Stream<CurrentWeatherState> mapEventToState(
@@ -35,7 +35,8 @@ class CurrentWeatherBloc
           },
           (weather) async* {
             yield CurrentWeatherState.loaded(
-                e.city.copyWith(currentWeather: weather));
+              e.city.copyWith(currentWeather: weather),
+            );
           },
         );
       },

@@ -200,24 +200,11 @@ class _$CurrentWeatherStateTearOff {
   const _$CurrentWeatherStateTearOff();
 
 // ignore: unused_element
-  _Initial initial() {
-    return const _Initial();
-  }
-
-// ignore: unused_element
-  _Loading loading() {
-    return const _Loading();
-  }
-
-// ignore: unused_element
-  _Error error() {
-    return const _Error();
-  }
-
-// ignore: unused_element
-  _Loaded loaded(City cityWithCurrentWeatherLoaded) {
-    return _Loaded(
-      cityWithCurrentWeatherLoaded,
+  _CurrentWeatherState call({bool isLoading, String error, City loadedCity}) {
+    return _CurrentWeatherState(
+      isLoading: isLoading,
+      error: error,
+      loadedCity: loadedCity,
     );
   }
 }
@@ -228,36 +215,11 @@ const $CurrentWeatherState = _$CurrentWeatherStateTearOff();
 
 /// @nodoc
 mixin _$CurrentWeatherState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(),
-    @required TResult error(),
-    @required TResult loaded(City cityWithCurrentWeatherLoaded),
-  });
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(),
-    TResult error(),
-    TResult loaded(City cityWithCurrentWeatherLoaded),
-    @required TResult orElse(),
-  });
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult error(_Error value),
-    @required TResult loaded(_Loaded value),
-  });
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult error(_Error value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
-  });
+  bool get isLoading;
+  String get error;
+  City get loadedCity;
+
+  $CurrentWeatherStateCopyWith<CurrentWeatherState> get copyWith;
 }
 
 /// @nodoc
@@ -265,6 +227,7 @@ abstract class $CurrentWeatherStateCopyWith<$Res> {
   factory $CurrentWeatherStateCopyWith(
           CurrentWeatherState value, $Res Function(CurrentWeatherState) then) =
       _$CurrentWeatherStateCopyWithImpl<$Res>;
+  $Res call({bool isLoading, String error, City loadedCity});
 }
 
 /// @nodoc
@@ -275,438 +238,111 @@ class _$CurrentWeatherStateCopyWithImpl<$Res>
   final CurrentWeatherState _value;
   // ignore: unused_field
   final $Res Function(CurrentWeatherState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res>
-    extends _$CurrentWeatherStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
-}
-
-/// @nodoc
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'CurrentWeatherState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(),
-    @required TResult error(),
-    @required TResult loaded(City cityWithCurrentWeatherLoaded),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(),
-    TResult error(),
-    TResult loaded(City cityWithCurrentWeatherLoaded),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult error(_Error value),
-    @required TResult loaded(_Loaded value),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult error(_Error value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements CurrentWeatherState {
-  const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$LoadingCopyWithImpl<$Res>
-    extends _$CurrentWeatherStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
-}
-
-/// @nodoc
-class _$_Loading implements _Loading {
-  const _$_Loading();
-
-  @override
-  String toString() {
-    return 'CurrentWeatherState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(),
-    @required TResult error(),
-    @required TResult loaded(City cityWithCurrentWeatherLoaded),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(),
-    TResult error(),
-    TResult loaded(City cityWithCurrentWeatherLoaded),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult error(_Error value),
-    @required TResult loaded(_Loaded value),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult error(_Error value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements CurrentWeatherState {
-  const factory _Loading() = _$_Loading;
-}
-
-/// @nodoc
-abstract class _$ErrorCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
-      __$ErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$CurrentWeatherStateCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
-      : super(_value, (v) => _then(v as _Error));
-
-  @override
-  _Error get _value => super._value as _Error;
-}
-
-/// @nodoc
-class _$_Error implements _Error {
-  const _$_Error();
-
-  @override
-  String toString() {
-    return 'CurrentWeatherState.error()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Error);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(),
-    @required TResult error(),
-    @required TResult loaded(City cityWithCurrentWeatherLoaded),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(),
-    TResult error(),
-    TResult loaded(City cityWithCurrentWeatherLoaded),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult error(_Error value),
-    @required TResult loaded(_Loaded value),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult error(_Error value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements CurrentWeatherState {
-  const factory _Error() = _$_Error;
-}
-
-/// @nodoc
-abstract class _$LoadedCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
-      __$LoadedCopyWithImpl<$Res>;
-  $Res call({City cityWithCurrentWeatherLoaded});
-}
-
-/// @nodoc
-class __$LoadedCopyWithImpl<$Res>
-    extends _$CurrentWeatherStateCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
-      : super(_value, (v) => _then(v as _Loaded));
-
-  @override
-  _Loaded get _value => super._value as _Loaded;
 
   @override
   $Res call({
-    Object cityWithCurrentWeatherLoaded = freezed,
+    Object isLoading = freezed,
+    Object error = freezed,
+    Object loadedCity = freezed,
   }) {
-    return _then(_Loaded(
-      cityWithCurrentWeatherLoaded == freezed
-          ? _value.cityWithCurrentWeatherLoaded
-          : cityWithCurrentWeatherLoaded as City,
+    return _then(_value.copyWith(
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      error: error == freezed ? _value.error : error as String,
+      loadedCity:
+          loadedCity == freezed ? _value.loadedCity : loadedCity as City,
     ));
   }
 }
 
 /// @nodoc
-class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.cityWithCurrentWeatherLoaded)
-      : assert(cityWithCurrentWeatherLoaded != null);
+abstract class _$CurrentWeatherStateCopyWith<$Res>
+    implements $CurrentWeatherStateCopyWith<$Res> {
+  factory _$CurrentWeatherStateCopyWith(_CurrentWeatherState value,
+          $Res Function(_CurrentWeatherState) then) =
+      __$CurrentWeatherStateCopyWithImpl<$Res>;
+  @override
+  $Res call({bool isLoading, String error, City loadedCity});
+}
+
+/// @nodoc
+class __$CurrentWeatherStateCopyWithImpl<$Res>
+    extends _$CurrentWeatherStateCopyWithImpl<$Res>
+    implements _$CurrentWeatherStateCopyWith<$Res> {
+  __$CurrentWeatherStateCopyWithImpl(
+      _CurrentWeatherState _value, $Res Function(_CurrentWeatherState) _then)
+      : super(_value, (v) => _then(v as _CurrentWeatherState));
 
   @override
-  final City cityWithCurrentWeatherLoaded;
+  _CurrentWeatherState get _value => super._value as _CurrentWeatherState;
+
+  @override
+  $Res call({
+    Object isLoading = freezed,
+    Object error = freezed,
+    Object loadedCity = freezed,
+  }) {
+    return _then(_CurrentWeatherState(
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      error: error == freezed ? _value.error : error as String,
+      loadedCity:
+          loadedCity == freezed ? _value.loadedCity : loadedCity as City,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_CurrentWeatherState implements _CurrentWeatherState {
+  const _$_CurrentWeatherState({this.isLoading, this.error, this.loadedCity});
+
+  @override
+  final bool isLoading;
+  @override
+  final String error;
+  @override
+  final City loadedCity;
 
   @override
   String toString() {
-    return 'CurrentWeatherState.loaded(cityWithCurrentWeatherLoaded: $cityWithCurrentWeatherLoaded)';
+    return 'CurrentWeatherState(isLoading: $isLoading, error: $error, loadedCity: $loadedCity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Loaded &&
-            (identical(other.cityWithCurrentWeatherLoaded,
-                    cityWithCurrentWeatherLoaded) ||
-                const DeepCollectionEquality().equals(
-                    other.cityWithCurrentWeatherLoaded,
-                    cityWithCurrentWeatherLoaded)));
+        (other is _CurrentWeatherState &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.loadedCity, loadedCity) ||
+                const DeepCollectionEquality()
+                    .equals(other.loadedCity, loadedCity)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(cityWithCurrentWeatherLoaded);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(loadedCity);
 
   @override
-  _$LoadedCopyWith<_Loaded> get copyWith =>
-      __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(),
-    @required TResult error(),
-    @required TResult loaded(City cityWithCurrentWeatherLoaded),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return loaded(cityWithCurrentWeatherLoaded);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(),
-    TResult error(),
-    TResult loaded(City cityWithCurrentWeatherLoaded),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loaded != null) {
-      return loaded(cityWithCurrentWeatherLoaded);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult error(_Error value),
-    @required TResult loaded(_Loaded value),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(error != null);
-    assert(loaded != null);
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult error(_Error value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+  _$CurrentWeatherStateCopyWith<_CurrentWeatherState> get copyWith =>
+      __$CurrentWeatherStateCopyWithImpl<_CurrentWeatherState>(
+          this, _$identity);
 }
 
-abstract class _Loaded implements CurrentWeatherState {
-  const factory _Loaded(City cityWithCurrentWeatherLoaded) = _$_Loaded;
+abstract class _CurrentWeatherState implements CurrentWeatherState {
+  const factory _CurrentWeatherState(
+      {bool isLoading, String error, City loadedCity}) = _$_CurrentWeatherState;
 
-  City get cityWithCurrentWeatherLoaded;
-  _$LoadedCopyWith<_Loaded> get copyWith;
+  @override
+  bool get isLoading;
+  @override
+  String get error;
+  @override
+  City get loadedCity;
+  @override
+  _$CurrentWeatherStateCopyWith<_CurrentWeatherState> get copyWith;
 }

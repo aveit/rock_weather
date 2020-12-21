@@ -32,6 +32,7 @@ void main() {
       feelsLike: 32.5,
       maximumTemperature: 35,
       minimumTemperature: 25,
+      iconId: 'ANY',
       dateTime: DateTime.fromMillisecondsSinceEpoch(
         1608318068,
         isUtc: true,

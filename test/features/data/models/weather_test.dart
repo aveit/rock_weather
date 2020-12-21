@@ -13,6 +13,7 @@ void main() {
     feelsLike: 39.49,
     maximumTemperature: 35.56,
     minimumTemperature: 35.56,
+    iconId: 'ANY',
   );
 
   test('Should be a suclass of Weather Entity', () async {

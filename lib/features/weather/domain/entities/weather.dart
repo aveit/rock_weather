@@ -3,10 +3,11 @@ import 'package:meta/meta.dart';
 
 class Weather extends Equatable {
   final DateTime dateTime;
-  final double currentTemperature;
-  final double feelsLike;
-  final double minimumTemperature;
-  final double maximumTemperature;
+  final num currentTemperature;
+  final num feelsLike;
+  final num minimumTemperature;
+  final num maximumTemperature;
+  final String iconId;
 
   const Weather({
     @required this.dateTime,
@@ -14,6 +15,7 @@ class Weather extends Equatable {
     @required this.feelsLike,
     @required this.minimumTemperature,
     @required this.maximumTemperature,
+    @required this.iconId,
   });
 
   @override
@@ -23,5 +25,6 @@ class Weather extends Equatable {
         feelsLike,
         minimumTemperature,
         maximumTemperature,
+        iconId,
       ];
 }

@@ -46,7 +46,7 @@ void main() {
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+          'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
 
       //* Act
       await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
@@ -117,7 +117,7 @@ void main() {
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey';
+          'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
 
       //* Act
       await remoteDataSource.getCurrentWeatherForCity(city: city);

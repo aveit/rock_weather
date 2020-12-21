@@ -22,7 +22,6 @@ class ServiceLocator {
   ///
   /// Ideally this method shoud be executed at the start of the app life cycle.
   static Future<void> init() async {
-    await serviceLocator.reset();
     await _registerNetwork();
     await _registerDataSources();
     await _registerRepositories();
@@ -58,9 +57,10 @@ class ServiceLocator {
   }
 
   static Future<void> _registerDataSources() async {
+    final dio = await serviceLocator.getAsync<Dio>();
     serviceLocator.registerSingleton<WeatherRemoteDataSource>(
       WeatherRemoteDataSourceImplementation(
-        networkClient: serviceLocator(),
+        networkClient: dio,
       ),
     );
   }

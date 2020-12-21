@@ -36,6 +36,7 @@ void main() {
         feelsLike: 32.5,
         maximumTemperature: 35,
         minimumTemperature: 25,
+        iconId: 'ANY',
         dateTime: DateTime.fromMillisecondsSinceEpoch(
           1608230106,
           isUtc: true,
@@ -46,6 +47,7 @@ void main() {
         feelsLike: 30.5,
         maximumTemperature: 33,
         minimumTemperature: 23,
+        iconId: 'ANY',
         dateTime: DateTime.fromMillisecondsSinceEpoch(
           1608316565,
           isUtc: true,
