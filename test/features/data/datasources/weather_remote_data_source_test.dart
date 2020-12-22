@@ -47,7 +47,7 @@ void main() {
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=minutely,hourly,alerts&appid=$apiKey&units=metric';
+          'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=current,minutely,hourly,alerts&appid=$apiKey&units=metric';
 
       //* Act
       await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
