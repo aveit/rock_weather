@@ -6,36 +6,50 @@ final concertList = [
     city: City(
       name: 'Silverstone',
       countryCode: 'UK',
-      stateCode: '',
       currentWeather: null,
       nextFiveDaysWeather: null,
+      latitude: 52.0922,
+      longitude: -1.026,
     ),
   ),
   Concert(
     city: City(
       name: 'São Paulo',
       countryCode: 'BR',
-      stateCode: '',
       currentWeather: null,
       nextFiveDaysWeather: null,
+      latitude: -22,
+      longitude: -49,
+    ),
+  ),
+  Concert(
+    city: City(
+      name: 'Três de Maio',
+      countryCode: 'BR',
+      currentWeather: null,
+      nextFiveDaysWeather: null,
+      latitude: -27.7733,
+      longitude: -54.24,
     ),
   ),
   Concert(
     city: City(
       name: 'Melbourne',
       countryCode: 'AU',
-      stateCode: '',
       currentWeather: null,
       nextFiveDaysWeather: null,
+      latitude: -37.814,
+      longitude: 144.9633,
     ),
   ),
   Concert(
     city: City(
       name: 'Monte Carlo',
       countryCode: 'MN',
-      stateCode: '',
       currentWeather: null,
       nextFiveDaysWeather: null,
+      latitude: 43.7496,
+      longitude: 7.437,
     ),
   ),
 ];

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/data/datasources/weather_remote_data_source.dart';
-import 'package:rock_weather/features/weather/data/models/weather.dart';
+import 'package:rock_weather/features/weather/data/models/current_weather_model.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:test/test.dart';
@@ -18,10 +18,11 @@ void main() {
 
   final city = City(
     name: 'Brasilia',
-    stateCode: 'DF',
     countryCode: 'BR',
     currentWeather: null,
     nextFiveDaysWeather: null,
+    latitude: 1,
+    longitude: 1,
   );
 
   setUp(() {
@@ -36,17 +37,17 @@ void main() {
         () async {
       //? Arrange
       final List<Map<String, dynamic>> jsonList = [
-        json.decode(fixture('weather.json')),
-        json.decode(fixture('weather.json'))
+        json.decode(fixture('current_weather.json')),
+        json.decode(fixture('current_weather.json'))
       ];
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response(
-          data: {'list': jsonList},
+          data: {'daily': jsonList},
         ),
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
+          'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=minutely,hourly,alerts&appid=$apiKey&units=metric';
 
       //* Act
       await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
@@ -70,8 +71,8 @@ void main() {
     test('Should get the list of Weather', () async {
       //? Arrange
       final List<Map<String, dynamic>> jsonList = [
-        json.decode(fixture('weather.json')),
-        json.decode(fixture('weather.json')),
+        json.decode(fixture('current_weather.json')),
+        json.decode(fixture('current_weather.json')),
       ];
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response(
@@ -85,8 +86,8 @@ void main() {
 
       //! Assert
       expect(result, [
-        WeatherModel.fromJson(jsonList[0]),
-        WeatherModel.fromJson(jsonList[1]),
+        CurrentWeatherModel.fromJson(jsonList[0]),
+        CurrentWeatherModel.fromJson(jsonList[1]),
       ]);
     });
 
@@ -109,7 +110,8 @@ void main() {
     test('Should call Dio with correct values to get data from the API',
         () async {
       //? Arrange
-      final Map<String, dynamic> jsonMap = json.decode(fixture('weather.json'));
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('current_weather.json'));
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response<Map<String, dynamic>>(
           data: jsonMap,
@@ -117,7 +119,7 @@ void main() {
       );
       final apiKey = remoteDataSource.apiKey;
       final url =
-          'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
+          'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=daily,minutely,hourly,alerts&appid=$apiKey&units=metric';
 
       //* Act
       await remoteDataSource.getCurrentWeatherForCity(city: city);
@@ -154,7 +156,8 @@ void main() {
 
     test('Should get the current Weather', () async {
       //? Arrange
-      final Map<String, dynamic> jsonMap = json.decode(fixture('weather.json'));
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('current_weather.json'));
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response<Map<String, dynamic>>(
           data: jsonMap,
@@ -168,7 +171,7 @@ void main() {
       //! Assert
       expect(
         result,
-        WeatherModel.fromJson(jsonMap),
+        CurrentWeatherModel.fromJson(jsonMap),
       );
     });
   });

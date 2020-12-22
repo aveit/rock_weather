@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_current_weather.dart';
 import 'package:rock_weather/features/weather/presentation/blocs/current_weather/current_weather_bloc.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
@@ -22,21 +22,25 @@ void main() {
     final city = City(
       countryCode: 'ANY',
       name: 'ANY',
-      stateCode: 'ANY',
       currentWeather: null,
       nextFiveDaysWeather: null,
+      latitude: 1,
+      longitude: 1,
     );
 
-    final weatherResult = Weather(
-      currentTemperature: 30,
-      feelsLike: 32.5,
-      maximumTemperature: 35,
-      minimumTemperature: 25,
-      iconId: 'ANY',
-      dateTime: DateTime.fromMillisecondsSinceEpoch(
-        1608318068,
-        isUtc: true,
-      ),
+    final weatherResult = CurrentWeather(
+      dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
+      clouds: 1,
+      dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
+      dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
+      feelsLike: 1,
+      humidity: 1,
+      temp: 1,
+      visibility: 1,
+      weatherDescription: 'ANY',
+      weatherIcon: 'ANY',
+      windDeg: 1,
+      windSpeed: 1,
     );
 
     final cityWithCurrentWeatherLoaded = city.copyWith(

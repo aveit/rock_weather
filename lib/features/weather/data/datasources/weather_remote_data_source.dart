@@ -1,18 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:rock_weather/features/weather/data/models/weather.dart';
+import 'package:rock_weather/features/weather/data/models/current_weather_model.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 
 abstract class WeatherRemoteDataSource {
   ///* Calls NetworkClient to get the current weather from the API
   ///* If something goes wrong in NetworkClient, it throws a ServerException
-  Future<Weather> getCurrentWeatherForCity({@required City city});
+  Future<CurrentWeather> getCurrentWeatherForCity({@required City city});
 
   ///* Calls NetworkClient to get the weather for the next five days from the API
   ///* If something goes wrong in NetworkClient, it throws a ServerException
-  Future<List<Weather>> getWeatherForNextFiveDaysForCity({@required City city});
+  Future<List<CurrentWeather>> getWeatherForNextFiveDaysForCity(
+      {@required City city});
 }
 
 class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
@@ -23,14 +24,14 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
   const WeatherRemoteDataSourceImplementation({@required this.networkClient});
 
   @override
-  Future<Weather> getCurrentWeatherForCity({@required City city}) async {
+  Future<CurrentWeather> getCurrentWeatherForCity({@required City city}) async {
     final url =
-        'weather?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
+        'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=daily,minutely,hourly,alerts&appid=$apiKey&units=metric';
 
     try {
       final result = await networkClient.get(url);
       if (result?.data?.isNotEmpty == true) {
-        return WeatherModel.fromJson(result.data);
+        return CurrentWeatherModel.fromJson(result.data);
       }
       throw ServerException(errorMessage: 'Nothing found');
     } on DioError {
@@ -39,20 +40,22 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
   }
 
   @override
-  Future<List<Weather>> getWeatherForNextFiveDaysForCity({
+  Future<List<CurrentWeather>> getWeatherForNextFiveDaysForCity({
     @required City city,
   }) async {
     final url =
-        'forecast?q=${city.name},${city.stateCode},${city.countryCode}&appid=$apiKey&units=metric';
+        'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=current,minutely,hourly,alerts&appid=$apiKey&units=metric';
 
     try {
       final result = await networkClient.get(url);
       if (result?.data?.isNotEmpty == true) {
-        final weatherListJson = result.data['list'] as List;
+        final weatherListJson = result.data['daily'] as List;
         if (weatherListJson?.isNotEmpty == true) {
-          var weatherModels = <WeatherModel>[];
+          var weatherModels = <CurrentWeatherModel>[];
           weatherListJson.forEach((json) {
-            weatherModels.add(WeatherModel.fromJson(json));
+            if (weatherModels.length < 5) {
+              weatherModels.add(CurrentWeatherModel.fromJson(json));
+            }
           });
           return weatherModels;
         }

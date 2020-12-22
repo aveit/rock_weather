@@ -15,7 +15,7 @@ class NextFiveDaysWeatherBloc
 
   NextFiveDaysWeatherBloc({
     @required this.getWeatherForNextFiveDays,
-  }) : super(_Initial());
+  }) : super(NextFiveDaysWeatherState.initial());
 
   @override
   Stream<NextFiveDaysWeatherState> mapEventToState(
@@ -23,14 +23,17 @@ class NextFiveDaysWeatherBloc
   ) async* {
     yield* event.map(
       getWeatherForNextFiveDaysForCity: (e) async* {
-        yield NextFiveDaysWeatherState.loading();
+        yield state.copyWith(isLoading: true);
         final eitherListOfWeatherOrFail = await getWeatherForNextFiveDays(
           params: GetWeatherForNextFiveDaysParams(city: e.city),
         );
 
         yield* eitherListOfWeatherOrFail.fold(
-          (_) async* {
-            yield NextFiveDaysWeatherState.error();
+          (failure) async* {
+            yield state.copyWith(
+              error: failure.errorMessage ?? 'Error to get Weather',
+              isLoading: false,
+            );
           },
           (result) async* {
             final cityWithLoadedWeather =

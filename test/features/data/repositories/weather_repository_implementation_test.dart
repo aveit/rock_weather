@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/data/datasources/weather_remote_data_source.dart';
 import 'package:rock_weather/features/weather/data/repositories/weather_repository_implementation.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:rock_weather/shared/network/network_info.dart';
@@ -21,10 +21,11 @@ void main() {
 
   final city = City(
     name: 'Brasilia',
-    stateCode: 'DF',
     countryCode: 'BR',
     currentWeather: null,
     nextFiveDaysWeather: null,
+    latitude: 1,
+    longitude: 1,
   );
 
   setUp(() {
@@ -85,21 +86,33 @@ void main() {
 
       test('Should return the list of weather when everything is ok', () async {
         final weathers = [
-          Weather(
-            dateTime: DateTime.fromMillisecondsSinceEpoch(1608230106),
-            currentTemperature: 20.1,
-            feelsLike: 25.2,
-            minimumTemperature: 18.6,
-            maximumTemperature: 22.5,
-            iconId: 'ANY',
-          ),
-          Weather(
+          CurrentWeather(
             dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            currentTemperature: 30.1,
-            feelsLike: 35.2,
-            minimumTemperature: 28.6,
-            maximumTemperature: 32.5,
-            iconId: 'ANY',
+            clouds: 1,
+            dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
+            dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
+            feelsLike: 1,
+            humidity: 1,
+            temp: 1,
+            visibility: 1,
+            weatherDescription: 'ANY',
+            weatherIcon: 'ANY',
+            windDeg: 1,
+            windSpeed: 1,
+          ),
+          CurrentWeather(
+            dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
+            clouds: 1,
+            dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
+            dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
+            feelsLike: 1,
+            humidity: 1,
+            temp: 1,
+            visibility: 1,
+            weatherDescription: 'ANY',
+            weatherIcon: 'ANY',
+            windDeg: 1,
+            windSpeed: 1,
           ),
         ];
         when(mockWeatherRemoteDataSouce.getWeatherForNextFiveDaysForCity(
@@ -168,13 +181,19 @@ void main() {
       });
 
       test('Should return the weather when everything is ok', () async {
-        final weather = Weather(
+        final weather = CurrentWeather(
           dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
-          currentTemperature: 30.1,
-          feelsLike: 35.2,
-          minimumTemperature: 28.6,
-          maximumTemperature: 32.5,
-          iconId: 'ANY',
+          clouds: 1,
+          dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
+          dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
+          feelsLike: 1,
+          humidity: 1,
+          temp: 1,
+          visibility: 1,
+          weatherDescription: 'ANY',
+          weatherIcon: 'ANY',
+          windDeg: 1,
+          windSpeed: 1,
         );
         when(mockWeatherRemoteDataSouce.getCurrentWeatherForCity(
           city: anyNamed('city'),

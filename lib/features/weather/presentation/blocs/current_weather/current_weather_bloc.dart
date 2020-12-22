@@ -30,8 +30,8 @@ class CurrentWeatherBloc
         );
 
         yield* eitherErrorOrSucces.fold(
-          (_) async* {
-            yield CurrentWeatherState.error();
+          (failure) async* {
+            yield CurrentWeatherState.error(error: failure.errorMessage);
           },
           (weather) async* {
             yield CurrentWeatherState.loaded(

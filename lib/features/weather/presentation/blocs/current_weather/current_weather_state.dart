@@ -18,9 +18,9 @@ abstract class CurrentWeatherState with _$CurrentWeatherState {
         isLoading: true,
         error: '',
       );
-  factory CurrentWeatherState.error() => CurrentWeatherState(
+  factory CurrentWeatherState.error({String error}) => CurrentWeatherState(
         isLoading: false,
-        error: 'Error',
+        error: error ?? 'Error',
       );
   factory CurrentWeatherState.loaded(City cityWithCurrentWeatherLoaded) =>
       CurrentWeatherState(

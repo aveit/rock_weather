@@ -15,15 +15,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Map<City, CurrentWeatherBloc> _blocs = {};
 
+  void loadConcertsWeather() {
+    _blocs.forEach((city, bloc) {
+      bloc.add(CurrentWeatherEvent.getCurrentWeatherForCity(city: city));
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+
     concertList.forEach((concert) {
-      _blocs[concert.city] = serviceLocator.get<CurrentWeatherBloc>()
-        ..add(
-          CurrentWeatherEvent.getCurrentWeatherForCity(city: concert.city),
-        );
+      _blocs[concert.city] = serviceLocator.get<CurrentWeatherBloc>();
     });
+    loadConcertsWeather();
   }
 
   @override
@@ -33,9 +38,13 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           '🎸 Concerts',
         ),
+        actions: [
+          IconButton(icon: Icon(Icons.refresh), onPressed: loadConcertsWeather),
+        ],
       ),
       body: ListView.builder(
         itemCount: _blocs.length,
+        shrinkWrap: true,
         itemBuilder: (context, index) {
           final currentConcert = concertList.elementAt(index);
           return BlocProvider.value(

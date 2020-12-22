@@ -19,10 +19,11 @@ void main() {
     //? Arrange
     final city = City(
       name: 'Brasilia',
-      stateCode: 'DF',
       countryCode: 'BR',
       currentWeather: null,
       nextFiveDaysWeather: null,
+      latitude: 1,
+      longitude: 1,
     );
 
     //* Act
