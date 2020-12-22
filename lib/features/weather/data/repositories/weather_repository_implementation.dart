@@ -2,6 +2,7 @@ import 'package:rock_weather/features/weather/data/datasources/weather_remote_da
 import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:dartz/dartz.dart';
+import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
 import 'package:rock_weather/features/weather/domain/repositories/weather_repository.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
@@ -40,8 +41,7 @@ class WeatherRepositoryImplementation implements WeatherRepository {
   }
 
   @override
-  Future<Either<Failure, List<CurrentWeather>>>
-      getWeatherForNextFiveDaysForCity({
+  Future<Either<Failure, List<DailyWeather>>> getWeatherForNextFiveDaysForCity({
     @required City city,
   }) async {
     try {

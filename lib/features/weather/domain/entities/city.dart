@@ -2,13 +2,15 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 
+import 'daily_weather.dart';
+
 class City extends Equatable {
   final String name;
   final String countryCode;
   final double latitude;
   final double longitude;
   final CurrentWeather currentWeather;
-  final List<CurrentWeather> nextFiveDaysWeather;
+  final List<DailyWeather> nextFiveDaysWeather;
 
   City({
     @required this.name,
@@ -25,7 +27,7 @@ class City extends Equatable {
     double latitude,
     double longitude,
     CurrentWeather currentWeather,
-    List<CurrentWeather> nextFiveDaysWeather,
+    List<DailyWeather> nextFiveDaysWeather,
   }) {
     return City(
       name: name ?? this.name,

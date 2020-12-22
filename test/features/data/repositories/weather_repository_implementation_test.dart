@@ -4,6 +4,7 @@ import 'package:rock_weather/features/weather/data/datasources/weather_remote_da
 import 'package:rock_weather/features/weather/data/repositories/weather_repository_implementation.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:rock_weather/shared/network/network_info.dart';
@@ -86,33 +87,29 @@ void main() {
 
       test('Should return the list of weather when everything is ok', () async {
         final weathers = [
-          CurrentWeather(
-            dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            clouds: 1,
-            dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            feelsLike: 1,
+          DailyWeather(
+            dt: 1608316565,
+            sunrise: 1608316565,
+            sunset: 1608316565,
+            rain: 1,
             humidity: 1,
-            temp: 1,
-            visibility: 1,
-            weatherDescription: 'ANY',
-            weatherIcon: 'ANY',
-            windDeg: 1,
-            windSpeed: 1,
+            feelsLike: FeelsLike(day: 1, eve: 1, morn: 1, night: 1),
+            temp: Temp(day: 1, night: 1, morn: 1, eve: 1, max: 1, min: 1),
+            weather: [
+              Weather(description: 'ANY', icon: 'ANY', id: 1, main: 'ANY'),
+            ],
           ),
-          CurrentWeather(
-            dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            clouds: 1,
-            dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
-            feelsLike: 1,
+          DailyWeather(
+            dt: 1608316565,
+            sunrise: 1608316565,
+            sunset: 1608316565,
+            rain: 1,
             humidity: 1,
-            temp: 1,
-            visibility: 1,
-            weatherDescription: 'ANY',
-            weatherIcon: 'ANY',
-            windDeg: 1,
-            windSpeed: 1,
+            feelsLike: FeelsLike(day: 1, eve: 1, morn: 1, night: 1),
+            temp: Temp(day: 1, night: 1, morn: 1, eve: 1, max: 1, min: 1),
+            weather: [
+              Weather(description: 'ANY', icon: 'ANY', id: 1, main: 'ANY'),
+            ],
           ),
         ];
         when(mockWeatherRemoteDataSouce.getWeatherForNextFiveDaysForCity(

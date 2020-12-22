@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:rock_weather/features/weather/data/models/current_weather_model.dart';
+import 'package:rock_weather/features/weather/data/models/daily_weather_model.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 
 abstract class WeatherRemoteDataSource {
@@ -12,7 +14,7 @@ abstract class WeatherRemoteDataSource {
 
   ///* Calls NetworkClient to get the weather for the next five days from the API
   ///* If something goes wrong in NetworkClient, it throws a ServerException
-  Future<List<CurrentWeather>> getWeatherForNextFiveDaysForCity(
+  Future<List<DailyWeather>> getWeatherForNextFiveDaysForCity(
       {@required City city});
 }
 
@@ -40,7 +42,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
   }
 
   @override
-  Future<List<CurrentWeather>> getWeatherForNextFiveDaysForCity({
+  Future<List<DailyWeather>> getWeatherForNextFiveDaysForCity({
     @required City city,
   }) async {
     final url =
@@ -49,16 +51,13 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
     try {
       final result = await networkClient.get(url);
       if (result?.data?.isNotEmpty == true) {
-        final weatherListJson = result.data['daily'] as List;
-        if (weatherListJson?.isNotEmpty == true) {
-          var weatherModels = <CurrentWeatherModel>[];
-          weatherListJson.forEach((json) {
-            if (weatherModels.length < 5) {
-              weatherModels.add(CurrentWeatherModel.fromJson(json));
-            }
-          });
-          return weatherModels;
-        }
+        var weatherModels = <DailyWeatherModel>[];
+        result.data['daily'].forEach((json) {
+          if (weatherModels.length < 5) {
+            weatherModels.add(DailyWeatherModel.fromJson(json));
+          }
+        });
+        return weatherModels;
       }
       throw ServerException(errorMessage: 'Nothing found');
     } on DioError {

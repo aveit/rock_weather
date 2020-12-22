@@ -171,7 +171,8 @@ class CityDetailsPage extends StatelessWidget {
                                     final weatherDay = state
                                         .loadedCity.nextFiveDaysWeather
                                         .elementAt(index);
-                                    return WeatherDay(weatherDay: weatherDay);
+                                    return Container();
+                                    // return WeatherDay(weatherDay: weatherDay);
                                   },
                                 ));
                                 return Column(

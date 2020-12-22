@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/data/datasources/weather_remote_data_source.dart';
 import 'package:rock_weather/features/weather/data/models/current_weather_model.dart';
+import 'package:rock_weather/features/weather/data/models/daily_weather_model.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:test/test.dart';
@@ -36,15 +37,15 @@ void main() {
     test('Should call Dio with correct values to get data from the API',
         () async {
       //? Arrange
-      final List<Map<String, dynamic>> jsonList = [
-        json.decode(fixture('current_weather.json')),
-        json.decode(fixture('current_weather.json'))
-      ];
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('daily_weather.json'));
+
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response(
-          data: {'daily': jsonList},
+          data: jsonMap,
         ),
       );
+
       final apiKey = remoteDataSource.apiKey;
       final url =
           'onecall?lat=${city.latitude}&lon=${city.longitude}&exclude=current,minutely,hourly,alerts&appid=$apiKey&units=metric';
@@ -70,13 +71,12 @@ void main() {
 
     test('Should get the list of Weather', () async {
       //? Arrange
-      final List<Map<String, dynamic>> jsonList = [
-        json.decode(fixture('current_weather.json')),
-        json.decode(fixture('current_weather.json')),
-      ];
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('daily_weather.json'));
+
       when(mockDio.get(any)).thenAnswer(
         (_) async => Response(
-          data: {'list': jsonList},
+          data: jsonMap,
         ),
       );
 
@@ -85,10 +85,13 @@ void main() {
           await remoteDataSource.getWeatherForNextFiveDaysForCity(city: city);
 
       //! Assert
-      expect(result, [
-        CurrentWeatherModel.fromJson(jsonList[0]),
-        CurrentWeatherModel.fromJson(jsonList[1]),
-      ]);
+      var weatherModels = <DailyWeatherModel>[];
+      jsonMap['daily'].forEach((json) {
+        if (weatherModels.length < 5) {
+          weatherModels.add(DailyWeatherModel.fromJson(json));
+        }
+      });
+      expect(weatherModels, result);
     });
 
     test('Should throw a ServerException if Dio returns empty data', () async {
