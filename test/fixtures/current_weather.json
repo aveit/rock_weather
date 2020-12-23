@@ -1,0 +1,29 @@
+{
+  "lat": -22,
+  "lon": -49,
+  "timezone": "America/Sao_Paulo",
+  "timezone_offset": -10800,
+  "current": {
+    "dt": 1608316565,
+    "sunrise": 1608316565,
+    "sunset": 1608316565,
+    "temp": 1,
+    "feels_like": 1,
+    "pressure": 1,
+    "humidity": 1,
+    "dew_point": 1,
+    "uvi": 1,
+    "clouds": 1,
+    "visibility": 1,
+    "wind_speed": 1,
+    "wind_deg": 1,
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "ANY",
+        "icon": "ANY"
+      }
+    ]
+  }
+}
