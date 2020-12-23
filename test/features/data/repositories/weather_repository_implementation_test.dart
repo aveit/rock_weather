@@ -173,17 +173,10 @@ void main() {
       test('Should return the weather when everything is ok', () async {
         final weather = CurrentWeather(
           dateTime: DateTime.fromMillisecondsSinceEpoch(1608316565),
-          clouds: 1,
-          dateTimeSunrise: DateTime.fromMillisecondsSinceEpoch(1608316565),
-          dateTimeSunset: DateTime.fromMillisecondsSinceEpoch(1608316565),
           feelsLike: 1,
-          humidity: 1,
           temp: 1,
-          visibility: 1,
           weatherDescription: 'ANY',
           weatherIcon: 'ANY',
-          windDeg: 1,
-          windSpeed: 1,
         );
         when(mockWeatherRemoteDataSouce.getCurrentWeatherForCity(
           city: anyNamed('city'),

@@ -12,7 +12,7 @@ class City extends Equatable {
   final CurrentWeather currentWeather;
   final List<DailyWeather> nextFiveDaysWeather;
 
-  City({
+  const City({
     @required this.name,
     @required this.countryCode,
     @required this.latitude,
@@ -43,6 +43,8 @@ class City extends Equatable {
   List<Object> get props => [
         name,
         countryCode,
+        latitude,
+        longitude,
         currentWeather,
         nextFiveDaysWeather,
       ];
