@@ -24,16 +24,6 @@ final concertList = [
   ),
   Concert(
     city: City(
-      name: 'Três de Maio',
-      countryCode: 'BR',
-      currentWeather: null,
-      nextFiveDaysWeather: null,
-      latitude: -27.7733,
-      longitude: -54.24,
-    ),
-  ),
-  Concert(
-    city: City(
       name: 'Melbourne',
       countryCode: 'AU',
       currentWeather: null,
