@@ -33,7 +33,7 @@ class WeatherRemoteDataSourceImplementation implements WeatherRemoteDataSource {
     try {
       final result = await networkClient.get(url);
       if (result?.data?.isNotEmpty == true) {
-        return CurrentWeatherModel.fromJson(result.data);
+        return CurrentWeatherModel.fromJson(result.data['current']);
       }
       throw ServerException(errorMessage: 'Nothing found');
     } on DioError {

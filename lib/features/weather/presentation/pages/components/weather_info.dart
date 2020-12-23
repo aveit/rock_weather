@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class WeatherInfo extends StatelessWidget {
   const WeatherInfo({
     Key key,
-    @required this.title,
+    @required this.leading,
     @required this.info,
+    this.trailing,
   }) : super(key: key);
 
   final String info;
-  final String title;
+  final String leading;
+  final Widget trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,10 @@ class WeatherInfo extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Text(title),
+          Text(leading),
           Spacer(),
           Text(info),
+          if (trailing != null) trailing
         ],
       ),
     );

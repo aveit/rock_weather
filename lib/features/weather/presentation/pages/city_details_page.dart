@@ -20,20 +20,10 @@ class CityDetailsPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Row(
-              children: [
-                Text(
-                  city.name,
-                ),
-                Spacer(),
-                // if (state.error.isEmpty && state.loadedCity != null)
-                // SizedBox(
-                //   height: 64,
-                //   child: WeatherIcon(
-                //     iconId: state.loadedCity.currentWeather.iconId,
-                //   ),
-                // ),
-              ],
+            title: Center(
+              child: Text(
+                city.name,
+              ),
             ),
             actions: [
               IconButton(
@@ -48,75 +38,85 @@ class CityDetailsPage extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Current Weather',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                if (state.error.isEmpty && state.loadedCity != null)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 48,
+                                  child: WeatherIcon(
+                                    iconId: state
+                                        .loadedCity.currentWeather.weatherIcon,
+                                  ),
+                                ),
+                                Text(
+                                  state.loadedCity.currentWeather
+                                      .weatherDescription
+                                      .toString(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Divider(),
-                          if (state.error.isEmpty &&
-                              state.loadedCity != null) ...[
-                            // Container(
-                            //   margin: const EdgeInsets.symmetric(vertical: 4),
-                            //   child: Row(
-                            //     children: [
-                            //       Text('Temperature'),
-                            //       Spacer(),
-                            //       Text(
-                            //         state.loadedCity.currentWeather
-                            //             .maximumTemperature
-                            //             .toString(),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Container(
-                            //   margin: const EdgeInsets.symmetric(vertical: 4),
-                            //   child: Row(
-                            //     children: [
-                            //       Text('Min today'),
-                            //       Spacer(),
-                            //       Text(
-                            //         state.loadedCity.currentWeather
-                            //             .minimumTemperature
-                            //             .toString(),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            // Container(
-                            //   margin: const EdgeInsets.symmetric(vertical: 4),
-                            //   child: Row(
-                            //     children: [
-                            //       Text('Max today'),
-                            //       Spacer(),
-                            //       Text(
-                            //         state.loadedCity.currentWeather
-                            //             .maximumTemperature
-                            //             .toString(),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            Divider(),
+                            Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.symmetric(vertical: 4),
+                              child: Text(
+                                state.loadedCity.currentWeather.temp
+                                        .toStringAsFixed(0) +
+                                    ' ºC',
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .headline4
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 4),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Feels Like ',
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .subtitle2
+                                        .copyWith(
+                                          color: Colors.grey,
+                                        ),
+                                  ),
+                                  Text(
+                                    state.loadedCity.currentWeather.feelsLike
+                                            .toStringAsFixed(0) +
+                                        ' ºC',
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .subtitle2
+                                        .copyWith(
+                                          color: Colors.grey,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
-                          if (state.error.isNotEmpty) Text(state.error)
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
@@ -129,7 +129,7 @@ class CityDetailsPage extends StatelessWidget {
                             'Next Five Days',
                             style: TextStyle(
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                               fontSize: 18,
                             ),
                           ),
@@ -171,8 +171,7 @@ class CityDetailsPage extends StatelessWidget {
                                     final weatherDay = state
                                         .loadedCity.nextFiveDaysWeather
                                         .elementAt(index);
-                                    return Container();
-                                    // return WeatherDay(weatherDay: weatherDay);
+                                    return WeatherDay(weatherDay: weatherDay);
                                   },
                                 ));
                                 return Column(

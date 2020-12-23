@@ -174,7 +174,7 @@ void main() {
       //! Assert
       expect(
         result,
-        CurrentWeatherModel.fromJson(jsonMap),
+        CurrentWeatherModel.fromJson(jsonMap['current']),
       );
     });
   });

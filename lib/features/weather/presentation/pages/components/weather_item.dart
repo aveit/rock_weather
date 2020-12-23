@@ -46,7 +46,8 @@ class WeatherItem extends StatelessWidget {
           },
           child: Card(
             child: ListTile(
-              title: Text(city.name),
+              title: Text(city.name,
+                  style: TextStyle(fontWeight: FontWeight.w500)),
               trailing: Builder(
                 builder: (context) {
                   if (state.error.isNotEmpty) {
@@ -60,16 +61,17 @@ class WeatherItem extends StatelessWidget {
                     return Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // WeatherIcon(
-                        //   iconId: state.loadedCity.currentWeather.iconId,
-                        // ),
-                        // Container(
-                        //   child: Text(
-                        //     state.loadedCity.currentWeather.maximumTemperature
-                        //             .toString() +
-                        //         ' ºC',
-                        //   ),
-                        // ),
+                        WeatherIcon(
+                          iconId: state.loadedCity.currentWeather.weatherIcon,
+                        ),
+                        Container(
+                          child: Text(
+                            state.loadedCity.currentWeather.temp
+                                    .toStringAsFixed(0) +
+                                ' ºC',
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ),
                       ],
                     );
                   }

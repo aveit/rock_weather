@@ -6,11 +6,11 @@ class CurrentWeather extends Equatable {
   final DateTime dateTimeSunrise;
   final num temp;
   final num feelsLike;
-  final int humidity;
-  final int clouds;
-  final int visibility;
-  final int windSpeed;
-  final int windDeg;
+  final num humidity;
+  final num clouds;
+  final num visibility;
+  final num windSpeed;
+  final num windDeg;
   final String weatherDescription;
   final String weatherIcon;
 

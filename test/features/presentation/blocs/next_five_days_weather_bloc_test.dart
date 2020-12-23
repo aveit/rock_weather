@@ -2,8 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/temperature.dart';
 import 'package:rock_weather/features/weather/domain/usecases/get_next_five_days_weather.dart';
 import 'package:rock_weather/features/weather/presentation/blocs/next_five_days/next_five_days_weather_bloc.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
@@ -34,28 +34,24 @@ void main() {
 
     final weatherResult = [
       DailyWeather(
-        dt: 1608316565,
-        sunrise: 1608316565,
-        sunset: 1608316565,
+        dateTime: DateTime.fromMillisecondsSinceEpoch(
+          int.tryParse('1608316565000'),
+        ),
         rain: 1,
         humidity: 1,
-        feelsLike: FeelsLike(day: 1, eve: 1, morn: 1, night: 1),
-        temp: Temp(day: 1, night: 1, morn: 1, eve: 1, max: 1, min: 1),
-        weather: [
-          Weather(description: 'ANY', icon: 'ANY', id: 1, main: 'ANY'),
-        ],
+        temperature: Temperature(max: 1, min: 1),
+        weatherDescription: 'ANY',
+        weatherIcon: 'ANY',
       ),
       DailyWeather(
-        dt: 1608316565,
-        sunrise: 1608316565,
-        sunset: 1608316565,
+        dateTime: DateTime.fromMillisecondsSinceEpoch(
+          int.tryParse('1608316565000'),
+        ),
         rain: 1,
         humidity: 1,
-        feelsLike: FeelsLike(day: 1, eve: 1, morn: 1, night: 1),
-        temp: Temp(day: 1, night: 1, morn: 1, eve: 1, max: 1, min: 1),
-        weather: [
-          Weather(description: 'ANY', icon: 'ANY', id: 1, main: 'ANY'),
-        ],
+        temperature: Temperature(max: 1, min: 1),
+        weatherDescription: 'ANY',
+        weatherIcon: 'ANY',
       ),
     ];
 

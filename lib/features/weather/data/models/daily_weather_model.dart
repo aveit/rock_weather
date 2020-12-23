@@ -1,41 +1,34 @@
 import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/temperature.dart';
 
 class DailyWeatherModel extends DailyWeather {
   DailyWeatherModel({
-    final int dt,
-    final int sunrise,
-    final int sunset,
-    final Temp temp,
-    final FeelsLike feelsLike,
-    final int humidity,
-    final List<Weather> weather,
-    final num rain,
+    DateTime dateTime,
+    Temperature temp,
+    int humidity,
+    String weatherDescription,
+    String weatherIcon,
+    num rain,
   }) : super(
-          dt: dt,
-          sunrise: sunrise,
-          sunset: sunset,
-          temp: temp,
-          feelsLike: feelsLike,
+          dateTime: dateTime,
+          temperature: temp,
           humidity: humidity,
-          weather: weather,
+          weatherDescription: weatherDescription,
+          weatherIcon: weatherIcon,
           rain: rain,
         );
 
   factory DailyWeatherModel.fromJson(Map<String, dynamic> json) {
     return DailyWeatherModel(
-      dt: json['dt'],
-      sunrise: json['sunrise'],
-      sunset: json['sunset'],
-      temp: json['temp'] != null ? new Temp.fromJson(json['temp']) : null,
-      feelsLike: json['feels_like'] != null
-          ? new FeelsLike.fromJson(json['feels_like'])
-          : null,
+      dateTime: DateTime.fromMillisecondsSinceEpoch(
+        int.tryParse(json['dt'].toString() + '000'),
+      ),
+      temp:
+          json['temp'] != null ? new Temperature.fromJson(json['temp']) : null,
       humidity: json['humidity'],
-      // weather: json['weather'] == null
-      //     ? null
-      //     : json['weather'].map((v) {
-      //         return Weather.fromJson(v);
-      //       }).toList<Weather>(),
+      weatherIcon: json['weather'] == null ? null : json['weather'][0]['icon'],
+      weatherDescription:
+          json['weather'] == null ? null : json['weather'][0]['description'],
       rain: json['rain'],
     );
   }

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
-import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
 import 'package:rock_weather/features/weather/domain/repositories/weather_repository.dart';
 import 'package:rock_weather/shared/errors/failures.dart';

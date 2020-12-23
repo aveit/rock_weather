@@ -5,6 +5,7 @@ import 'package:rock_weather/features/weather/data/repositories/weather_reposito
 import 'package:rock_weather/features/weather/domain/entities/city.dart';
 import 'package:rock_weather/features/weather/domain/entities/current_weather.dart';
 import 'package:rock_weather/features/weather/domain/entities/daily_weather.dart';
+import 'package:rock_weather/features/weather/domain/entities/temperature.dart';
 import 'package:rock_weather/shared/errors/exceptions.dart';
 import 'package:rock_weather/shared/errors/failures.dart';
 import 'package:rock_weather/shared/network/network_info.dart';
@@ -88,28 +89,24 @@ void main() {
       test('Should return the list of weather when everything is ok', () async {
         final weathers = [
           DailyWeather(
-            dt: 1608316565,
-            sunrise: 1608316565,
-            sunset: 1608316565,
+            dateTime: DateTime.fromMillisecondsSinceEpoch(
+              int.tryParse('1608316565000'),
+            ),
             rain: 1,
             humidity: 1,
-            feelsLike: FeelsLike(day: 1, eve: 1, morn: 1, night: 1),
-            temp: Temp(day: 1, night: 1, morn: 1, eve: 1, max: 1, min: 1),
-            weather: [
-              Weather(description: 'ANY', icon: 'ANY', id: 1, main: 'ANY'),
-            ],
+            temperature: Temperature(max: 1, min: 1),
+            weatherDescription: 'ANY',
+            weatherIcon: 'ANY',
           ),
           DailyWeather(
-            dt: 1608316565,
-            sunrise: 1608316565,
-            sunset: 1608316565,
+            dateTime: DateTime.fromMillisecondsSinceEpoch(
+              int.tryParse('1608316565000'),
+            ),
             rain: 1,
             humidity: 1,
-            feelsLike: FeelsLike(day: 1, eve: 1, morn: 1, night: 1),
-            temp: Temp(day: 1, night: 1, morn: 1, eve: 1, max: 1, min: 1),
-            weather: [
-              Weather(description: 'ANY', icon: 'ANY', id: 1, main: 'ANY'),
-            ],
+            temperature: Temperature(max: 1, min: 1),
+            weatherDescription: 'ANY',
+            weatherIcon: 'ANY',
           ),
         ];
         when(mockWeatherRemoteDataSouce.getWeatherForNextFiveDaysForCity(
