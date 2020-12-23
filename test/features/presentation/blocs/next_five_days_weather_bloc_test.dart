@@ -37,8 +37,6 @@ void main() {
         dateTime: DateTime.fromMillisecondsSinceEpoch(
           int.tryParse('1608316565000'),
         ),
-        rain: 1,
-        humidity: 1,
         temperature: Temperature(max: 1, min: 1),
         weatherDescription: 'ANY',
         weatherIcon: 'ANY',
@@ -47,8 +45,6 @@ void main() {
         dateTime: DateTime.fromMillisecondsSinceEpoch(
           int.tryParse('1608316565000'),
         ),
-        rain: 1,
-        humidity: 1,
         temperature: Temperature(max: 1, min: 1),
         weatherDescription: 'ANY',
         weatherIcon: 'ANY',
