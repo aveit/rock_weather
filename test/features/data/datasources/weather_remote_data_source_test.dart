@@ -33,6 +33,10 @@ void main() {
     );
   });
 
+  test('codemagic test', () {
+    expect(true, false);
+  });
+
   group('[NEXT FIVE DAYS]', () {
     test('Should call Dio with correct values to get data from the API',
         () async {
