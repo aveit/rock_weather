@@ -1,5 +1,7 @@
 # rock_weather
 
+https://api.codemagic.io/apps/61007bbcd885ed180223ee74/default-workflow/status_badge.svg
+
 A Flutter project which display weather information of some cities to a Rock Band.
 
 ---
@@ -26,17 +28,20 @@ The most used patterns on the project are:
 A service locator is used to wire up all instances, allowing us to control which instances may be singletons, if necessary.
 
 ---
+
 ### Structure Explanation
 
 I separated the app in features (just so you can see how I do the structure on a real app), and every feature has 3 layers, which are: presentation, domain and data layer
 
 ---
+
 #### Domain
 
 This is where we put all of the business logic (use cases) and the business objects (entities) and also defines the Repositories contracts.
 The Domain should be independent of every other layer.
 
 ---
+
 #### Data
 
 This is the layer where we implement the Repositories and cover all things related to data access.
@@ -44,12 +49,13 @@ Here we have a Repository which will call a DataSource (in this case we just hav
 And we also have the models which are extending the entities, but they the funcionality to convert from a json.
 
 ---
-#### Presentation
 
+#### Presentation
 
 This is the layer where we put everything related to the UI, like pages, widgets and also BLOCs which could be renamed to PLOCs (Presentation Logic Component) which will just hold the logic for the presentation layer beacuse the business logic is already implemented on the usecases.
 
 ---
+
 ### Error Handling
 
 To not have to remember every exception which could be thrown I added some generic Failures and Exceptions.
@@ -61,14 +67,14 @@ The Right side is used to return some data when everything goes right.
 The Exceptions should be catched on the Repository and the it will return to the above layer a Either type.
 
 ---
-### Freezed
 
+### Freezed
 
 I've used freezed to be possible to use Unions/Sealed classes on the BLOCs so it's easy to work with.
 
 ---
-### Code Generator
 
+### Code Generator
 
 Files with _freezed_ can be regenerated using the following command in the terminal:
 
