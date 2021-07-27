@@ -22,7 +22,11 @@ workflows:
     scripts:
       - flutter packages pub get
       - flutter analyze
-      - cd . && flutter test test
+      - name: Flutter unit tests
+        script: |
+          mkdir -p test-results
+          flutter test --machine > test-results/flutter.json
+        test_report: test-results/flutter.json
     artifacts:
       - flutter_drive.log
     publishing:
