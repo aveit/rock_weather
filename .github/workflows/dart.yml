@@ -25,6 +25,12 @@ jobs:
         if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
         # Setup the flutter environment.
         
+    - name: webfactory/ssh-agent
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_GITHUB_ACTIONS }}
+
+        
     - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v1.5.0
       with:
