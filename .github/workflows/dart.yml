@@ -25,6 +25,12 @@ jobs:
         if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
         # Setup the flutter environment.
         
+    - name: Format SSH key and add to agent
+      run: |
+        chmod 600 ~/.ssh/id_rsa
+        echo "" >> ~/.ssh/id_rsa
+        echo "" >> ~/.ssh/known_hosts
+        
     - name: webfactory/ssh-agent
       uses: webfactory/ssh-agent@v0.5.3
       with:
