@@ -19,7 +19,7 @@ jobs:
     - uses: shimataro/ssh-key-action@v2.3.0
       with:
         key: ${{ secrets.SSH_GITHUB_ACTIONS }}
-        #name: id_rsa # optional
+        name: id_rsa # optional
         known_hosts: unnecessary
         #config: ${{ secrets.CONFIG }} # ssh_config; optional
         if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
