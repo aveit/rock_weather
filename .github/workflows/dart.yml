@@ -13,7 +13,7 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: shimataro/ssh-key-action@v2.3.0
@@ -21,27 +21,27 @@ jobs:
         key: ${{ secrets.SSH_GITHUB_ACTIONS }}
         name: id_rsa # optional
         known_hosts: unnecessary
-        #config: ${{ secrets.CONFIG }} # ssh_config; optional
         if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
         # Setup the flutter environment.
-        
-    - name: Format SSH key and add to agent
-      run: |
-        chmod 600 ~/.ssh/id_rsa
-        echo "" >> ~/.ssh/id_rsa
-        echo "" >> ~/.ssh/known_hosts
         
     - name: webfactory/ssh-agent
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_GITHUB_ACTIONS }}
-
         
     - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v1.5.0
       with:
         # channel: 'beta' # 'dev', 'alpha', default to: 'stable'
         flutter-version: '1.22.6' # you can also specify exact version of flutter
-    - run: flutter pub get
+    - run: flutter test --coverage --machine > test-results.json
+    - uses: dorny/test-reporter@v1.4.2
+      with:
+        name: test-results
+        path: test-results.json
+        reporter: flutter-json
+    - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+      with:
+        min_coverage: 0 
         
     
