@@ -35,8 +35,8 @@ jobs:
         # channel: 'beta' # 'dev', 'alpha', default to: 'stable'
         flutter-version: '1.22.6' # you can also specify exact version of flutter
     - run: flutter pub get
-    - run: cd . && flutter test test --coverage
-    - run: cd . && flutter test test --machine > test-results.json
+    - run: cd . && flutter test --coverage test
+    - run: cd . && flutter test --machine test > test-results.json
     - uses: dorny/test-reporter@v1.4.2
       with:
         name: test-results
