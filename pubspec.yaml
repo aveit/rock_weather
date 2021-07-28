@@ -23,8 +23,7 @@ dependencies:
   intl: ^0.16.1
   json_annotation: ^3.1.1
   hello:
-    git:
-      url: https://github.com/aveit/hello.git
+    git: https://github.com/aveit/hello.git
 
 dev_dependencies:
   flutter_test:
