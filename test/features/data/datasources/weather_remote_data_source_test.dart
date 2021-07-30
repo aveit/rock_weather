@@ -33,6 +33,10 @@ void main() {
     );
   });
 
+  test('GitHub Actions', () {
+    expect(true, true);
+  });
+
   group('[NEXT FIVE DAYS]', () {
     test('Should call Dio with correct values to get data from the API',
         () async {
