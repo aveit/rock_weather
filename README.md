@@ -1,5 +1,7 @@
 # rock_weather
 
+[![Unit tests](https://github.com/aveit/rock_weather/actions/workflows/push_tests.yml/badge.svg)](https://github.com/aveit/rock_weather/actions/workflows/push_tests.yml)
+
 ![build status](https://api.codemagic.io/apps/61007bbcd885ed180223ee74/default-workflow/status_badge.svg)
 
 A Flutter project which display weather information of some cities to a Rock Band.
