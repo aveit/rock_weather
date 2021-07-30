@@ -291,6 +291,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  hello:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "0b2474830d4555a6eff8be584d7ce88f40e8e85c"
+      url: "git@github.com:aveit/hello.git"
+    source: git
+    version: "0.0.1"
   http:
     dependency: transitive
     description:
@@ -641,4 +650,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.10.0 <2.11.0"
-  flutter: ">=1.16.0"
+  flutter: ">=1.17.0"
