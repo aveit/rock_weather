@@ -31,3 +31,9 @@ jobs:
           min_coverage: 0
       - run: flutter build apk
       - run: flutter build appbundle
+
+      # Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: binaries
+          path: build/app/outputs/**
