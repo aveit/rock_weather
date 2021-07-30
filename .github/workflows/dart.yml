@@ -7,12 +7,13 @@
 name: Dart
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    types: [ready_for_review]
+  #pull_request_review:
+  #  types: [submitted]
 
 jobs:
   test:
-    if: github.event.review.state == 'approved'
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
