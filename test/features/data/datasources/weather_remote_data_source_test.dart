@@ -34,6 +34,7 @@ void main() {
   });
 
   test('codemagic test', () {
+    //! assert
     expect(true, true);
   });
 
