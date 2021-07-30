@@ -1,8 +1,9 @@
 name: Test on PRs pushes     
-on: push
+on: 
+  workflow_dispatch:
 
 jobs:
-  one:
+  contexts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
