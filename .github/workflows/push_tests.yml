@@ -1,0 +1,38 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Tests on pushes
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+      - "develop"
+
+jobs:
+  test:
+    # This job will run on ubuntu virtual machine
+    runs-on: ubuntu-latest
+    steps:
+      - name: webfactory/ssh-agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_GITHUB_ACTIONS }}
+
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.5.0
+        with:
+          # channel: 'beta' # 'dev', 'alpha', default to: 'stable'
+          flutter-version: "1.22.6" # you can also specify exact version of flutter
+      - run: flutter pub get
+      - run: cd . && flutter test --machine --coverage test > test-results.json
+      - uses: dorny/test-reporter@v1.4.2
+        with:
+          name: results
+          path: test-results.json
+          reporter: flutter-json
+      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        with:
+          min_coverage: 0
