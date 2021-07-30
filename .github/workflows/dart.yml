@@ -34,7 +34,6 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_GITHUB_ACTIONS }}
-
         
     - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v1.5.0
@@ -51,6 +50,4 @@ jobs:
         reporter: flutter-json
     - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
       with:
-        min_coverage: 0 
-        
-    
+        min_coverage: 0
