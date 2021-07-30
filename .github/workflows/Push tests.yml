@@ -4,32 +4,16 @@
 # documentation.
 
 
-name: Dart
+name: Tests on pushes
 
 on:
-  pull_request:
-    types: [ready_for_review]
-  #pull_request_review:
-  #  types: [submitted]
+  push:
 
 jobs:
   test:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
-    # - uses: shimataro/ssh-key-action@v2.3.0
-    #   with:
-    #     key: ${{ secrets.SSH_GITHUB_ACTIONS }}
-    #     name: id_rsa # optional
-    #     known_hosts: unnecessary
-    #     #config: ${{ secrets.CONFIG }} # ssh_config; optional
-    #     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-        
-    # - name: Format SSH key and add to agent
-    #   run: |
-    #     chmod 600 ~/.ssh/id_rsa
-    #     echo "" >> ~/.ssh/id_rsa
-    #     echo "" >> ~/.ssh/known_hosts
         
     - name: webfactory/ssh-agent
       uses: webfactory/ssh-agent@v0.5.3
@@ -42,8 +26,7 @@ jobs:
         # channel: 'beta' # 'dev', 'alpha', default to: 'stable'
         flutter-version: '1.22.6' # you can also specify exact version of flutter
     - run: flutter pub get
-    - run: cd . && flutter test --coverage test
-    - run: cd . && flutter test --machine test > test-results.json
+    - run: cd . && flutter test --machine --coverage test > test-results.json
     - uses: dorny/test-reporter@v1.4.2
       with:
         name: test-results
