@@ -34,7 +34,7 @@ void main() {
   });
 
   test('codemagic test', () {
-    expect(true, false);
+    expect(true, true);
   });
 
   group('[NEXT FIVE DAYS]', () {
